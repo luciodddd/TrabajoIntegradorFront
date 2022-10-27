@@ -29,6 +29,7 @@ font & reset css
 --------------------------------------------- 
 */
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+@import url("https://cdn.syncfusion.com/ej2/material.css")
 /* 
 ---------------------------------------------
 reset
@@ -395,7 +396,23 @@ input.submit{
 }
 
 .log-error{
-  color: red;
+  text-align: center;
+  width: 100%;
+  background-color: rgb(232, 218, 218);
+  color: rgb(144, 23, 23);
+  border-color: rgb(205, 9, 9);
+  border-radius: 2px;
+  border: 10px;
+  font-weight: bold;
+}
+.log-success{
+  text-align: center;
+  width: 100%;
+  background-color: rgb(203, 230, 196);
+  color: rgb(3, 204, 36);
+  border-color: rgb(16, 69, 14);
+  border-radius: 2px;
+  border: 10px;
   font-weight: bold;
 }
 /* 
@@ -762,11 +779,20 @@ input.submit{
   width: 25%;
 }
 .vertical-line {
-  
+  color: transparent;
+  background-color: transparent;
   border-left: 2px solid black;
   margin-top: 5px;
   height: 35px;
   border-style: dotted;
+}
+
+
+
+.calendar-searcher {
+  background-color: white;
+  border: none;
+  z-index: 90;
 }
 
 /*====================================================================================================================

@@ -7,7 +7,7 @@ import Nav from "../../Components/Header/Nav";
 
 
 
-function Header({loginCheck, logOut, user, error,registrationCheck}) {
+function Header({loginCheck, logOut, user, error,registrationCheck, errorRegister, logged}) {
     
     return (
         <header class="sticky">
@@ -24,7 +24,7 @@ function Header({loginCheck, logOut, user, error,registrationCheck}) {
                 <div className="header-login">
                     <DropdownMenu.DropdownMenu>
                         <DropdownMenu.DropdownMenuIU loginCheck={loginCheck} logOut={logOut} user={user} error={error}
-                        registrationCheck={registrationCheck}></DropdownMenu.DropdownMenuIU>
+                        registrationCheck={registrationCheck} errorRegister={errorRegister} logged={logged} ></DropdownMenu.DropdownMenuIU>
                     </DropdownMenu.DropdownMenu>
                 </div>
             </div>

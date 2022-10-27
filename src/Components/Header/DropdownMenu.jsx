@@ -7,6 +7,7 @@ import Login from './Login'
 import {ReactComponent as BackArrow} from "../../Icons/back-arrow.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCircleArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import DropDownItem from './DropDownItem'
 
 
 const DropdownMenu = (props) => {
@@ -21,11 +22,11 @@ const DropdownMenu = (props) => {
   )
 }
 
-function DropdownMenuIU({loginCheck, error, logOut, user,registrationCheck}) {
+function DropdownMenuIU({loginCheck, error, logOut, user,registrationCheck, errorRegister, logged}) {
   
-  const[logged,setLogged] = useState(user.logged)
+  const[loggedIn,setLogged] = useState(logged)
   const handler = ()=>{
-    setLogged(user.logged)}
+    setLogged(logged)}
 
   const[login,setLogin] = useState(false)
   const handlerLogin = ()=>{
@@ -35,27 +36,15 @@ function DropdownMenuIU({loginCheck, error, logOut, user,registrationCheck}) {
   const handlerRegister = ()=>{
       setRegister(!register)}
 
-    function DropDownItem(props){
-      return(
-        <a href={props.link && props.link} className='menu-item' onClick={props.handler} id={props.id}>
-          <img className='user-avatar' src={props.profilePic}></img>
-          <i class={props.icon}></i>
-          {props.children}
-          
-        </a>
-      )}
-
-  
-
   return (
     <div className='dropdown'>
 
-      <CSSTransition in={register===true} unmountOnExit timeout={100} className="menu-register">
+      <CSSTransition in={(register===true)&&(logged===false)} unmountOnExit timeout={100} className="menu-register">
         <div className="menu">
-        <div onClick={handlerRegister}>
-            <FontAwesomeIcon icon={faCircleArrowLeft} id="dropdown-black"/>
+          <div onClick={handlerRegister}>
+              <FontAwesomeIcon icon={faCircleArrowLeft} id="dropdown-black"/>
           </div>
-        <Register registrationCheck={registrationCheck}></Register>
+          <Register registrationCheck={registrationCheck} errorRegister={errorRegister}></Register>
         </div>
       </CSSTransition>
 
