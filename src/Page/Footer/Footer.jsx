@@ -1,6 +1,14 @@
 import React from 'react'
+import Categories from "../../JSON/categories.json"
 
 const Footer = () => {
+
+    const categories = Categories
+    const categKeys = Object.keys(categories)
+    const navItems = categKeys.map(e => {
+        return(<li><a href="#">{categories[e].tittle}</a></li>)
+    })
+
     const today = new Date()
     return (
         <footer>
@@ -19,11 +27,9 @@ const Footer = () => {
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <h4>Shopping &amp; Categories</h4>
+                    <h4>Categorias</h4>
                     <ul>
-                        <li><a href="#">Men’s Shopping</a></li>
-                        <li><a href="#">Women’s Shopping</a></li>
-                        <li><a href="#">Kid's Shopping</a></li>
+                        {navItems}
                     </ul>
                 </div>
                 <div class="col-lg-3">
