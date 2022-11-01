@@ -18,9 +18,6 @@ function Header({loginCheck, logOut, user, error,registrationCheck, errorRegiste
                         <p>Los mejores alquileres</p>
                     </Link>
                 </div>
-                <div>
-                    <Searcher></Searcher>
-                </div>
                 <div className="header-login">
                     <DropdownMenu.DropdownMenu>
                         <DropdownMenu.DropdownMenuIU loginCheck={loginCheck} logOut={logOut} user={user} error={error}
@@ -28,7 +25,7 @@ function Header({loginCheck, logOut, user, error,registrationCheck, errorRegiste
                     </DropdownMenu.DropdownMenu>
                 </div>
             </div>
-            <Nav/>
+            
         </header>
     );
 }
