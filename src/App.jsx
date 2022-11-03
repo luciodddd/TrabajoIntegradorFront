@@ -7,6 +7,8 @@ import About from './Page/AboutUs/About';
 import Products from './Components/Content/Products';
 import Contact from './Page/Contacts/Contact';
 import userCredentials from "./JSON/user-list.json"
+import LoginPage from './Page/Login/LoginPage';
+import RegisterPage from './Page/Register/RegisterPage';
 import {BrowserRouter,Routes,Route,Link,Outlet} from "react-router-dom";
 
 function App() {
@@ -23,6 +25,7 @@ const users = Object.keys(usersCredential)
 
 //Funcion de login:
 const loginCheck = credentials => {
+    sessionStorage.setItem("loggedInUser",false);
     console.log("logueando")
     console.log(credentials)
     let successLog = false
@@ -38,6 +41,7 @@ const loginCheck = credentials => {
           })
           setLogged(true)
           setError("")
+          sessionStorage.setItem("loggedInUser",true);
           console.log("Entraste")
         }}
       if (successLog===false){
@@ -98,6 +102,10 @@ const registrationCheck = registrationInfo => {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/contact-us" element={<Contact />} />
+        <Route path="/login" element={<LoginPage loginCheck={loginCheck} logOut={logOut} user={user} error={error} registrationCheck={registrationCheck}
+      errorRegister={errorRegister} logged = {logged}/>} />
+        <Route path="/register" element={<RegisterPage registrationCheck={registrationCheck}
+      errorRegister={errorRegister} logged = {logged} />} />
         {/*<Route path="/product/:id" element={<SingleProduct />} />*/}
       </Routes>
       <Footer/>

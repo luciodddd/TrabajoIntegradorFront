@@ -3,18 +3,18 @@ import CarruselProducts from '../../Components/Content/CarruselProducts';
 import upcomingMonths from "../../JSON/upcomingMonths.json"
 import products from "../../JSON/products.json"
 import Searcher from '../../Components/Header/Searcher';
-import Nav from '../../Components/Header/Nav';
+
 
 function Home() {
     // Logica js
     return (
     <div className="home-main">
         <section class="section search-categoria">
+            <div>
+                <h1 className='search-title'>Busca ofertas en hoteles, casas y mucho más</h1>
+            </div>
             <div class="container-searcher">
                 <Searcher></Searcher>
-            </div>
-            <div class="container">
-                <Nav/>
             </div>
         </section>
         <section class="section" id="carrusel">
@@ -22,8 +22,8 @@ function Home() {
                   <div class="row">
                       <div class="col-lg-6">
                           <div class="section-heading">
-                              <h2>Se acerca el verano</h2>
-                              <span>Los mejores alojamientos para los próximos meses</span>
+                              <h2>Qué tipo de alojamiento estás buscando?</h2>
+                              <span>Elije lo que más te gusta</span>
                           </div>
                       </div>
                   </div>
