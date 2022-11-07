@@ -45,7 +45,7 @@ const Searcher = () => {
     </div>*/}
     <form className='searcher-nav'>
         <select required name="city" id="city search-location" className='search-input'>
-        <option className="placeholder-selected" value="" disabled selected hidden>Dónde querés ir?</option>
+        <option className="placeholder-selected" value="" disabled selected hidden> A dónde vamos?</option>
           {ciudades.map(e=> {return(<option value={e}>{e}</option>)})}
         </select>
         {/*<input className='search-input' type="text" placeholder='Dónde quieres ir?' id="search-location"/>*/}
@@ -68,7 +68,9 @@ const Searcher = () => {
         </div> 
         <a className='vertical-line'></a>
         <input className='search-input' type="text" placeholder='Cuántas personas?' id="search-people"/>
-        <button type="submit"><img src={search} className="search-img search-input"/></button>
+        <div className='button-search'>
+          <button type="submit">Buscar</button>
+        </div>
     </form>
     </div>
   )
