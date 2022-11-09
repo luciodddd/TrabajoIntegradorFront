@@ -51,7 +51,7 @@ const Searcher = () => {
         {/*<input className='search-input' type="text" placeholder='Dónde quieres ir?' id="search-location"/>*/}
         <a className='vertical-line'></a>
         <input value={ ` ${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")} ` } readOnly className='inputBox' onClick={() => setOpen(open => !open)}/> 
-        <div className='calendarWrap'> 
+        <div className='git'> 
           <div ref={refOne}>
             {open &&
               <DateRange

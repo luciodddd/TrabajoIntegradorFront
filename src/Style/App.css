@@ -9,20 +9,4 @@ input.inputBox{
   border: 1px solid #242526;
 }
 
-.calendarWrap{
-  display: inline-block;
-  position: relative;
-  outline: none;
-  border: none;
-  font-size: 5px;
-}
 
-.calendarElement{
-  position:absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: black;
-  border: 1px solid #242526;
-  top: 40px;
-  z-index: 999;
-}

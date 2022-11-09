@@ -21,18 +21,29 @@ input.inputBox{
 
 .calendarWrap{
   display: inline-block;
-  background-color: black;
   position: relative;
+}
+
+.git{
+  background-color: black;
+}
+
+.dates{
+  text-align: center;
+  padding-top: 30px;
 }
 
 .calendarElement{
   position:absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-color: black;
   top: 40px;
   border: 1px solid #242526;
   z-index: 999;
+}
+
+.rdrDateDisplayWrapper {
+  display: none; 
 }
 
 :root{

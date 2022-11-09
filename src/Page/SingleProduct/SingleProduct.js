@@ -1,4 +1,6 @@
 import React from 'react'
+import ProductCalendar from '../../Components/Header/ProductCalendar';
+
 function SingleProduct() {
     return (
       <div className="single-product-main">
@@ -52,6 +54,7 @@ function SingleProduct() {
                             <div class="total">
                                 <h4>Total: $210.00</h4>
                                 <div class="main-border-button"><a href="#">Add To Cart</a></div>
+                                <ProductCalendar></ProductCalendar>
                             </div>
                         </div>
                     </div>
@@ -60,6 +63,7 @@ function SingleProduct() {
             </section>
 
         </div>
+        
     )
 }
 export default SingleProduct;
