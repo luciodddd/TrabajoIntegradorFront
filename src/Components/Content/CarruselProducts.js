@@ -3,10 +3,11 @@ import MiniatureProduct from './MiniatureProduct'
 
 const CarruselProducts = (props) => {
   const products = props.data
-
-  const productKeys = Object.keys(products)
-  const carruselItems = productKeys.map(e => {
-      return(<MiniatureProduct product={products[e]} key={e+"_product_upcoming"}/>)
+    console.log(products)
+  
+  const carruselItems = products.map(e => {
+        console.log(e)
+      return(<MiniatureProduct product={e} key={e.title}/>)
   })
 
     return (

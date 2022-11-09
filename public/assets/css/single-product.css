@@ -1,0 +1,8 @@
+div.single-product-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding-top: 200px;
+    background-color: black;
+}
