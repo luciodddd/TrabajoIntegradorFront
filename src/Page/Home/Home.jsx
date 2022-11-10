@@ -5,6 +5,7 @@ import axios from 'axios';
 import Categories from '../../Components/Content/Categories';
 
 
+
 function Home() {
 
     // Logica js
@@ -19,18 +20,41 @@ function Home() {
 
     // Conexión Categorias
     const [categories, setCategories] = useState([]);
-
-    const getNameAxios = async () => {
+    const getCategoriesAxios = async () => {
         try {
             const resGet = await axios.get('http://192.168.100.34:8080/categories')
             setCategories(resGet.data)
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getCategoriesAxios(6)
+    }, []);
+
+    const categorySection = categories.map(e => {
+        return(<Categories filter={activeCategoryFilter} category={e} key={e.id} active={categoryFilter}/>)
+    })
+
+    // Conexión productos:
+    const [randomProducts, setRandomProducts] = useState([]);
+    const [Products, setProducts] = useState([]);
+    const getProductsAxios = async () => {
+        try {
+            const resGet = await axios.get('http://192.168.100.34:8080/products')
+            const shuffledResponse = resGet.data.sort(() => 0.5 - Math.random());
+            let selectedProducts = shuffledResponse.slice(0, 4);
+            setRandomProducts(selectedProducts)
+            setProducts(resGet.data)
+            
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-        getNameAxios(6)
+        getProductsAxios(6)
     }, []);
 
     useEffect(() => {
@@ -39,9 +63,7 @@ function Home() {
         console.log(categoryFilter)
     }, [categoryFilter]);
 
-    const categorySection = categories.map(e => {
-        return(<Categories filter={activeCategoryFilter} imageUrl={e.imageUrl} title={e.title} description={e.description} key={e.id} active={categoryFilter}/>)
-    })
+    
 
     //
 
@@ -72,13 +94,13 @@ function Home() {
                 </div>
             </div>
         </section>
-        {/*
+        
         <section class="section" id="carrusel">
               <div class="container">
                   <div class="row">
                       <div class="col-lg-6">
                           <div class="section-heading">
-                              <h2>Ubicaciones destacadas</h2>
+                              <h2>Ubicaciones recomendadas</h2>
                               <span>¿Aún no sabes a dónde ir?</span>
                           </div>
                       </div>
@@ -86,11 +108,11 @@ function Home() {
               </div>
               <div class="container">
                   <div class="row">
-                    <CarruselProducts data={products}></CarruselProducts>
+                    <CarruselProducts data={randomProducts}></CarruselProducts>
                   </div>
               </div>
         </section>
-        */}
+        
         
     </div>)
 }

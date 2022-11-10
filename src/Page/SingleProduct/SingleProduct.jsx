@@ -1,10 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom"
 import "../../Style/header.css"
+import axios from 'axios';
 
 function SingleProduct() {
     const productId = useParams()
-    console.log(productId)
+    const [product, setProduct] = useState([]);
+    const getProductsAxios = async () => {
+        try {
+            const resGet = await axios.get(`http://192.168.100.34:8080/products/${productId}`)
+            setProduct(resGet.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getProductsAxios(6)
+    }, []);
+
     return (
             <div className="single-product-main">
                 <div className='category-single-product'></div>
