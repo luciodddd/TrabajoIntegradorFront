@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom"
 import "../../Style/header.css"
 import axios from 'axios';
+import ProductCalendar from '../../Components/Header/ProductCalendar';
 
 function SingleProduct() {
     const productId = useParams().id
@@ -64,6 +65,10 @@ function SingleProduct() {
                 </section>
                 <div className="description-single-product">
                     <h6>{singleProduct.description}</h6>
+                </div>
+                <div className="Fecha-disponible">
+                    <h6>Fechas Disponibles</h6>
+                    <ProductCalendar></ProductCalendar>
                 </div>
             </div>
     )
