@@ -17,8 +17,8 @@ function Header({loginCheck, logOut, user, error,registrationCheck, errorRegiste
     useEffect(() => {
         const isPath = (path) => path === location.pathname;
         setDisplayButtons({
-            login: isPath('/login') || isPath('/'),
-            register: isPath('/register') || isPath('/'),
+            login: !isPath('/register'),
+            register: !isPath('/login')
         })
     }, [location]);
 

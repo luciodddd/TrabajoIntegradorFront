@@ -30,7 +30,7 @@ function Home() {
         }
     }
     useEffect(() => {
-        getCategoriesAxios(6)
+        getCategoriesAxios()
     }, []);
 
     const categorySection = categories.map(e => {
@@ -54,7 +54,7 @@ function Home() {
     }
 
     useEffect(() => {
-        getProductsAxios(6)
+        getProductsAxios()
     }, []);
 
     useEffect(() => {

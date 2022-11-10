@@ -4,31 +4,67 @@ import "../../Style/header.css"
 import axios from 'axios';
 
 function SingleProduct() {
-    const productId = useParams()
-    const [product, setProduct] = useState([]);
+    const productId = useParams().id
+    const [singleProduct, setSingleProduct] = useState({
+        "id": "",
+        "name": "",
+        "description": "",
+        "image": {
+          "id": "",
+          "title": "",
+          "url": ""
+        },
+        "category": {
+          "id": "",
+          "title": "",
+          "description": "",
+          "image": {
+            "id": "",
+            "title": "",
+            "url": ""
+          }
+        },
+        "city": {
+          "id": "",
+          "name": "",
+          "shortName": ""
+        }
+      });
     const getProductsAxios = async () => {
         try {
             const resGet = await axios.get(`http://192.168.100.34:8080/products/${productId}`)
-            setProduct(resGet.data)
+            setSingleProduct(resGet.data)
+            console.log(resGet.data)
         } catch (error) {
             console.log(error);
         }
     }
-    useEffect(() => {
-        getProductsAxios(6)
-    }, []);
-
+    useEffect(() => {getProductsAxios(1)}, []);
+    
     return (
             <div className="single-product-main">
-                <div className='category-single-product'></div>
-                <div className='location-single-product'></div>
-                <section className='galerry-single-product'>
-                    <div className="left-helf-image">
-                        <img src='https://www.kayak.com.ar/rimg/himg/ab/64/d9/expediav2-38713-6584af-750938.jpg?width=720&height=576&crop=true'></img>
+                <div className='category-single-product'>
+                    <h6>{singleProduct.category.title}</h6>
+                    <h3>{singleProduct.name}</h3>
+                </div>
+                <div className='location-single-product'>
+                    <span><i class="fa fa-star"></i>{singleProduct.city.name}</span>
+                    <span>A {Math.floor(Math.random() * 100)} Km del centro</span>
+                </div>
+                <section className='gallery-single-product'>
+                    <div className="left-half-image">
+                        <img src={singleProduct.image.url} alt={singleProduct.image.name}></img>
                     </div>
-                    <div className="right-helf-image"></div>
+                    <div className="right-half-image">
+                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
+                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
+                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
+                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
+                    </div>
                 </section>
-                <div className="description-single-product"></div>
+                <div className="description-single-product">
+                    <h6>{singleProduct.description}</h6>
+                </div>
             </div>
     )
 }
