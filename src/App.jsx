@@ -5,6 +5,7 @@ import Home from './Page/Home/Home';
 import Footer from './Page/Footer/Footer';
 import About from './Page/AboutUs/About';
 import Products from './Components/Content/Products';
+import SingleProduct from './Page/SingleProduct/SingleProduct';
 import Contact from './Page/Contacts/Contact';
 import userCredentials from "./JSON/user-list.json"
 import LoginPage from './Page/Login/LoginPage';
@@ -91,7 +92,6 @@ const registrationCheck = registrationInfo => {
   setError("")
 }
 
-/*            */
   return (
     <div classname="App">
       <BrowserRouter>
@@ -106,7 +106,7 @@ const registrationCheck = registrationInfo => {
       errorRegister={errorRegister} logged = {logged}/>} />
         <Route path="/register" element={<RegisterPage registrationCheck={registrationCheck}
       errorRegister={errorRegister} logged = {logged} />} />
-        {/*<Route path="/product/:id" element={<SingleProduct />} />*/}
+        <Route path="/product/:id" element={<SingleProduct />} />
       </Routes>
       <Footer/>
       </BrowserRouter>
