@@ -1,6 +1,9 @@
+import "../../Style/bootstrap.min.css"
+import "../../Style/styles.css"
+import "../../Style/login-register.css"
+
 import React from 'react'
 import Login from '../../Components/Header/Login'
-import ProductCalendar from '../../Components/Header/ProductCalendar';
 
 const LoginPage = ({loginCheck, error}) => {
   

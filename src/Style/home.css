@@ -1,0 +1,258 @@
+:root {
+  --violet: #545776;
+  --aquamarine: #1dbeb4;
+}
+
+#active{
+  background-color: #1dbeb4;
+  border: #1dbeb4;
+}
+
+div.container {
+  margin-top: 10px;
+}
+
+#categories-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.individual-category img {
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.individual-category{
+  font-size: 12px;
+  width: 20%;
+  box-shadow: 5px 5px 10px #c5c5c5;
+  border-radius: 10px;
+  border-width: 10px;
+  
+}
+
+.individual-category h2, span{
+  padding-left: 10px;
+  width: 100%}
+.individual-category h2{
+    color: #261f3f;
+    font-size: 16px}
+  
+.home-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-title{
+    color: white;
+    text-align: center;
+}
+.container-searcher{
+    width: 80%;
+}
+
+.main-border-button a {
+    font-size: 13px;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 25px;
+    display: inline-block;
+    font-weight: 500;
+    transition: all .3s;
+  }
+  
+  .main-border-button a:hover {
+    background-color: #fff;
+    color: var(--violet);
+  }
+  
+  
+  .main-white-button a {
+    font-size: 13px;
+    color: var(--violet);
+    background-color: #fff;
+    padding: 12px 25px;
+    display: inline-block;
+    border-radius: 3px;
+    font-weight: 600;
+    transition: all .3s;
+  }
+  
+  .main-white-button a:hover {
+    opacity: 0.9;
+  }
+  
+  .main-text-button a {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+    transition: all .3s;
+  }
+  
+  .main-text-button a:hover {
+    opacity: 0.9;
+  }
+  
+  .section-heading h2 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--violet);
+  }
+  
+  .section-heading span {
+    font-size: 14px;
+    color: #a1a1a1;
+    font-style: italic;
+    font-weight: 400;
+  }
+  
+  
+  
+  
+  /*====================================================================================================================
+  NAV DE CATEGORIAS
+  ====================================================================================================================*/
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+    width: 100%;
+    background-color: transparent;
+    padding: 0 1rem;
+  }
+  .navbar-nav {
+    width: 90%;
+    height: 100%;
+    display: flex;
+  }
+  .nav-item {
+    width: 150px;
+    display: flex;
+    height: 70%;
+  }
+  .icon-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 5px ;
+    border-radius: 15px;
+    background-color: #e4cbcb;
+    transition: filter 300ms;
+  }
+  .icon-button:hover{
+    filter: brightness(1.2)
+  }
+  .categories-bar {
+    width: 40px;
+    size: 40px;
+  }
+  .icon-button span{
+    color: #191a20;
+  }
+  .search-categoria{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 270px;
+    padding-top: 110px;
+    background-color: #545776;
+    width: 80%;
+    border-radius: 10px;
+  }
+
+
+  
+/* Searcher */
+
+.form-container {
+    background-color: white;
+    border-radius: 30px;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin: 10px;
+  }
+  .form-container form {
+    height: 100%;
+    width: 600px;
+    display: flex;
+    gap: 70px;
+    justify-content: space-around;
+  }
+
+  .search-img{
+    background-color: #ffffff;
+    color: #ffffff;
+    width: 45px;
+    height: 45px;
+  }
+  .searcher-nav button {
+    display: flex;
+    border: 0px;
+    background-color: transparent;
+  }
+  .search-input {
+    border: none;
+    background: transparent;
+    height: 90%;
+  }
+  #search-people {
+    width: 25%;
+  }
+  #search-location {
+    width: 25%;
+  }
+  .vertical-line {
+    color: transparent;
+    background-color: transparent;
+    border-left: 2px solid black;
+    margin-top: 5px;
+    height: 35px;
+    border-style: dotted;
+  }
+  
+  .calendar-searcher {
+    background-color: white;
+    border: none;
+    z-index: 90;
+  }
+
+  .git{
+    background-color: #191a20;
+  }
+
+  .button-search{
+    background-color: #1DBEB4;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+    position: relative;
+    padding: 5x;
+    height: 30px;
+    width: 200px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .thumb{
+    height: 600px;
+    width: 100%;
+  }
+
+  .image-carusel{
+    width:100%;
+    height:100%;
+
+  }
+  
+  div .carousel.carousel-slider .control-arrow {
+    top: 30%;
+    background-color: var(--aquamarine);
+    border: solid var(--violet) 1px;
+    height: 100px;
+    width:100px
+  }

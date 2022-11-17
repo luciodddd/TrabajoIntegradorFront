@@ -1,3 +1,10 @@
+// IMPORT CSS//
+import "../../Style/header.css"
+import "../../Style/bootstrap.min.css"
+import "../../Style/styles.css"
+import "../../Style/home.css"
+
+
 import React, {useState, useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../Icons/Logo.png"

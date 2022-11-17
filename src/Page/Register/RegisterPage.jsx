@@ -1,3 +1,7 @@
+import "../../Style/bootstrap.min.css"
+import "../../Style/styles.css"
+import "../../Style/login-register.css"
+
 import React from 'react'
 import Register from '../../Components/Header/Register'
 
