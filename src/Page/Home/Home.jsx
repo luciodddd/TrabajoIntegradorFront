@@ -52,7 +52,7 @@ function Home() {
     
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get('http://192.168.100.34:8080/products')
+            const resGet = await axios.get('http://localhost:8080/products')
             const resGetCity = await axios.get('http://192.168.100.34:8080/cities')
             const shuffledResponse = resGet.data.sort(() => 0.5 - Math.random());
             let selectedProducts = shuffledResponse.slice(0, 4);
