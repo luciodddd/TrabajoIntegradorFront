@@ -33,7 +33,7 @@ function SingleProduct() {
       });
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get(`http://192.168.100.34:8080/products/${productId}`)
+            const resGet = await axios.get(`http://localhost:8080/products/${productId}`)
             setSingleProduct(resGet.data)
             console.log(resGet.data)
         } catch (error) {

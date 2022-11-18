@@ -22,7 +22,7 @@ function Home() {
     const [categories, setCategories] = useState([]);
     const getCategoriesAxios = async () => {
         try {
-            const resGet = await axios.get('http://192.168.100.34:8080/categories')
+            const resGet = await axios.get('http://localhost:8080/categories')
             setCategories(resGet.data)
             
         } catch (error) {
