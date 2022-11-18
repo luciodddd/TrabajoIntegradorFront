@@ -1,16 +1,19 @@
+// CSS IMPORT //
+import "./Style/styles.css"
+import "./Style/index.css"
+
 import React, {useState} from 'react';
 import './Style/App.css';
 import Header from './Page/Header/Header';
 import Home from './Page/Home/Home';
 import Footer from './Page/Footer/Footer';
-import About from './Page/AboutUs/About';
-import Products from './Components/Content/Products';
+//import About from './Page/AboutUs/About';
 import SingleProduct from './Page/SingleProduct/SingleProduct';
 import Contact from './Page/Contacts/Contact';
 import userCredentials from "./JSON/user-list.json"
 import LoginPage from './Page/Login/LoginPage';
 import RegisterPage from './Page/Register/RegisterPage';
-import {BrowserRouter,Routes,Route,Link,Outlet} from "react-router-dom";
+import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 function App() {
 
@@ -99,9 +102,8 @@ const registrationCheck = registrationInfo => {
       errorRegister={errorRegister} logged = {logged}/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/contact-us" element={<Contact />} />
+        {/*<Route path="/about" element={<About />} />*/}
+        {/*<Route path="/contact-us" element={<Contact />} />*/}
         <Route path="/login" element={<LoginPage loginCheck={loginCheck} logOut={logOut} user={user} error={error} registrationCheck={registrationCheck}
       errorRegister={errorRegister} logged = {logged}/>} />
         <Route path="/register" element={<RegisterPage registrationCheck={registrationCheck}

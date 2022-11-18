@@ -1,8 +1,17 @@
+// IMPORT CSS//
+import "../../Style/bootstrap.min.css"
+import "../../Style/styles.css"
+import "../../Style/home.css"
+import "../../Style/index.css"
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
 import React, {useState,useEffect} from 'react'
 import CarruselProducts from '../../Components/Content/CarruselProducts';
 import Searcher from '../../Components/Header/Searcher';
 import axios from 'axios';
 import Categories from '../../Components/Content/Categories';
+import { Carousel } from 'react-responsive-carousel';
 
 
 
@@ -39,15 +48,16 @@ function Home() {
 
     // Conexión productos:
     const [randomProducts, setRandomProducts] = useState([]);
-    const [Products, setProducts] = useState([]);
+    const [cities, setCities] = useState([]);
+    
     const getProductsAxios = async () => {
         try {
             const resGet = await axios.get('http://192.168.100.34:8080/products')
+            const resGetCity = await axios.get('http://192.168.100.34:8080/cities')
             const shuffledResponse = resGet.data.sort(() => 0.5 - Math.random());
             let selectedProducts = shuffledResponse.slice(0, 4);
             setRandomProducts(selectedProducts)
-            setProducts(resGet.data)
-            
+            setCities(resGetCity)
         } catch (error) {
             console.log(error);
         }
@@ -65,7 +75,8 @@ function Home() {
 
     
 
-    //
+    // Conexión de ciudades
+
 
 
     return (
@@ -75,7 +86,7 @@ function Home() {
                 <h1 className='search-title'>Busca ofertas en hoteles, casas y mucho más</h1>
             </div>
             <div class="container-searcher">
-                <Searcher></Searcher>
+                <Searcher cities={cities}></Searcher>
             </div>
         </section>
         <section class="section">

@@ -1,0 +1,51 @@
+:root{
+    --form-width: 500px
+}
+div.login-page{
+    width: var(--form-width);
+    padding-top: 200px;
+    min-height: 52vh;
+    background-color: white}
+div.login-page.register{
+    width: calc(var(--form-width)*2);
+    }
+
+    div.login-page.register #form-register{
+        display: flex;  
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+.dropdown-log label{
+    font-size: 14px;
+    font-weight: bold   ;
+    text-align: left;
+}
+div.login-page .log-item{
+    width: 100%;
+    background-color: white;
+}
+
+div.login-page.register .log-item{
+    flex-wrap: wrap;
+    width: 40%;
+    background-color: white;
+}
+
+div.login-page input.log-item{
+    width: 100%;
+    background-color: white;
+}
+
+div.login-page input.log-item{
+    width: 100%;
+    background-color: white;
+}
+
+div.login-page #submit-login{
+    padding-left: 39px;
+    text-align: center;
+    color: white;
+    width: 150px;
+    background-color: var(--aquamarine);
+}

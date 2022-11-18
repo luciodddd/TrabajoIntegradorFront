@@ -1,6 +1,9 @@
+
+import "../../Style/single-product.css"
+import "../../Style/bootstrap.min.css"
+
 import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom"
-import "../../Style/header.css"
 import axios from 'axios';
 import ProductCalendar from '../../Components/Header/ProductCalendar';
 
@@ -11,26 +14,25 @@ function SingleProduct() {
         "name": "",
         "description": "",
         "image": {
-          "id": "",
-          "title": "",
-          "url": ""
+        "id": "",
+        "title": "",
+        "url": ""
         },
         "category": {
-          "id": "",
-          "title": "",
-          "description": "",
-          "image": {
+        "id": "",
+        "title": "",
+        "description": "",
+        "image": {
             "id": "",
             "title": "",
             "url": ""
-          }
+        }
         },
         "city": {
-          "id": "",
-          "name": "",
-          "shortName": ""
-        }
-      });
+        "id": "",
+        "name": "",
+        "shortName": ""
+        }});
     const getProductsAxios = async () => {
         try {
             const resGet = await axios.get(`http://localhost:8080/products/${productId}`)
@@ -52,7 +54,7 @@ function SingleProduct() {
                     <span><i class="fa fa-star"></i>{singleProduct.city.name}</span>
                     <span>A {Math.floor(Math.random() * 100)} Km del centro</span>
                 </div>
-                <section className='gallery-single-product'>
+                <section href="" className='gallery-single-product'>
                     <div className="left-half-image">
                         <img src={singleProduct.image.url} alt={singleProduct.image.name}></img>
                     </div>

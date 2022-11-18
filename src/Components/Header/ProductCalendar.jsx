@@ -1,3 +1,4 @@
+import "../../Style/index.css"
 import React, {useEffect, useRef, useState } from 'react'
 import { addDays, format} from 'date-fns';
 import {today} from '@internationalized/date';
