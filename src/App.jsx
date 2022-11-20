@@ -14,6 +14,7 @@ import userCredentials from "./JSON/user-list.json"
 import LoginPage from './Page/Login/LoginPage';
 import RegisterPage from './Page/Register/RegisterPage';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
+import SingleProductReserva from "./Page/SingleProductReserva/SingleProductReserva";
 
 function App() {
 
@@ -109,6 +110,7 @@ const registrationCheck = registrationInfo => {
         <Route path="/register" element={<RegisterPage registrationCheck={registrationCheck}
       errorRegister={errorRegister} logged = {logged} />} />
         <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/reservas/:id" element={<SingleProductReserva />} />
       </Routes>
       <Footer/>
       </BrowserRouter>

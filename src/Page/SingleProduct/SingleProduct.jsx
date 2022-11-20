@@ -2,10 +2,12 @@
 import "../../Style/single-product.css"
 import "../../Style/bootstrap.min.css"
 
+import "../../JSON/apiManagement.js"
 import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom"
 import axios from 'axios';
 import ProductCalendar from '../../Components/Header/ProductCalendar';
+import { PRODUCT_BY_ID } from "../../JSON/apiManagement.js"
 
 function SingleProduct() {
     const productId = useParams().id
@@ -13,11 +15,11 @@ function SingleProduct() {
         "id": "",
         "name": "",
         "description": "",
-        "image": {
+        "images": [{
         "id": "",
         "title": "",
         "url": ""
-        },
+        }],
         "category": {
         "id": "",
         "title": "",
@@ -32,10 +34,19 @@ function SingleProduct() {
         "id": "",
         "name": "",
         "shortName": ""
-        }});
+        },
+        "policies":[{
+            "id": "",
+            "title":"",
+            "description":""
+        }],
+        "details":[{
+            "id":"",
+            "name":""
+        }]});
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get(`http://localhost:8080/products/${productId}`)
+            const resGet = await axios.get(`${PRODUCT_BY_ID}${productId}`)
             setSingleProduct(resGet.data)
             console.log(resGet.data)
         } catch (error) {
@@ -56,13 +67,13 @@ function SingleProduct() {
                 </div>
                 <section href="" className='gallery-single-product'>
                     <div className="left-half-image">
-                        <img src={singleProduct.image.url} alt={singleProduct.image.name}></img>
+                        <img src={singleProduct.images[0].url} alt={singleProduct.images[0].name}></img>
                     </div>
                     <div className="right-half-image">
-                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
-                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
-                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
-                        <div className='image-gallery'><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="placeholder" /></div>
+                        <div className='image-gallery'><img  src={singleProduct.images[1].url} alt={singleProduct.images[1].name} /></div>
+                        <div className='image-gallery'><img  src={singleProduct.images[2].url} alt={singleProduct.images[2].name} /></div>
+                        <div className='image-gallery'><img  src={singleProduct.images[3].url} alt={singleProduct.images[3].name} /></div>
+                        <div className='image-gallery'><img  src={singleProduct.images[4].url} alt={singleProduct.images[4].name} /></div>
                     </div>
                 </section>
                 <div className="description-single-product">
