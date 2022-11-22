@@ -15,6 +15,7 @@ import LoginPage from './Page/Login/LoginPage';
 import RegisterPage from './Page/Register/RegisterPage';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import SingleProductReserva from "./Page/SingleProductReserva/SingleProductReserva";
+import SingleCategory from "./Page/Categories/SingleCategory";
 
 function App() {
 
@@ -111,6 +112,7 @@ const registrationCheck = registrationInfo => {
       errorRegister={errorRegister} logged = {logged} />} />
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/reservas/:id" element={<SingleProductReserva />} />
+        <Route path="/categoria/:id" element={<SingleCategory />} />
       </Routes>
       <Footer/>
       </BrowserRouter>

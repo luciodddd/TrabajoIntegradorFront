@@ -16,16 +16,7 @@ import { ALL_CATEGORIES, ALL_CITIES, ALL_PRODUCTS } from "../../JSON/apiManageme
 
 
 function Home() {
-    console.log(ALL_CATEGORIES)
     // Logica js
-    
-    // Filtro categorías
-
-    const [categoryFilter,setCategoryFilter] = useState("")
-
-    function activeCategoryFilter(title){
-        setCategoryFilter(title)
-    }
 
     // Conexión Categorias
     const [categories, setCategories] = useState([]);
@@ -43,7 +34,7 @@ function Home() {
     }, []);
 
     const categorySection = categories.map(e => {
-        return(<Categories filter={activeCategoryFilter} category={e} key={e.id} active={categoryFilter}/>)
+        return(<Categories category={e} key={e.id}/>)
     })
 
     // Conexión productos:
@@ -66,14 +57,6 @@ function Home() {
     useEffect(() => {
         getProductsAxios()
     }, []);
-
-    useEffect(() => {
-        console.log("re-render")
-
-        console.log(categoryFilter)
-    }, [categoryFilter]);
-
-    
 
     // Conexión de ciudades
 
