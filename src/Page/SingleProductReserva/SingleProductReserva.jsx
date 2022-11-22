@@ -56,8 +56,10 @@ function SingleProduct() {
     return (
             <div className="single-product-main-reserva">
                 <div className='category-single-product'>
-                    <h6>{singleProduct.category.title}</h6>
-                    <h3>{singleProduct.name}</h3>
+                    {/* <h6>{singleProduct.category.title}</h6>
+                    <h3>{singleProduct.name}</h3> */}
+                    <h6>Hotel</h6>
+                    <h3>Las Tres Marias</h3>
                 </div>
                 <form>
                     <div className='form-cointainer'>
@@ -66,7 +68,7 @@ function SingleProduct() {
                                 <h6>Completá tus datos</h6>
                                 <div className="user-data-form">
                                     <div className="input-container">
-                                        <label for="name">Nomre</label>
+                                        <label for="name">Nombre</label>
                                         <input type="text" defaultValue="Lucio" required name="name" id="name"/>
                                     </div>
                                     <div className="input-container">
@@ -86,13 +88,14 @@ function SingleProduct() {
                             
                             <div className="reservation-calendar">
                                 <h6>Seleccioná tu fecha de reserva</h6>    
-                                <div className="Fecha-disponible">
-                                    {/*<ProductCalendar></ProductCalendar>*/}
-                                </div>
+                                <ProductCalendar></ProductCalendar>
                             </div>
-                            <div className="policies">
-                                <h6>"Políticas de reserva"</h6>
-                                <p>random text</p>
+                            <div className="horario">
+                                <h6>Tu horario de llegada</h6>
+                                <div className="horario-input">
+                                    <h5>Tu habitacion va a estar lista para el check in entre las 9:00 AM y las 11:00 PM</h5>
+                                    <p>Indica tu horario estimado de llegada</p>
+                                </div>
                             </div>
                         </div>
                         <div className="detail-container">
@@ -101,24 +104,31 @@ function SingleProduct() {
                                 <div className="image-detail">
                                     <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="image" />
                                 </div>
-                                <div className="category">Hotel</div>
+                                <div className="category">HOTEL</div>
                                 <div className="name">Hotel Las 3 Marías</div>
-                                <div className="starts">5 Estrellas</div>
-                                <div className="ubicacion">Mar del Plata</div>
+                                <div className="stars">5 Estrellas</div>
+                                <div className="ubicacion">Avenida Colon 167, Mar del Plata, Buenos Aires, Argentina</div>
+                                <hr />
                                 <div className="check-in">
-                                    <span>Check in</span>
+                                    <p>Check in</p>
                                     <span>23/11/2022</span>
                                 </div>
+                                <hr />
                                 <div className="check-out">
-                                    <span>Check out</span>
+                                    <p>Check out</p>
                                     <span>29/11/2022</span>
                                 </div>
-                                <button type="submit">Confirmar Reserva</button>
+                                <hr />
+                                <button type="submit">Confirmar reserva</button>
                             </div>
                         </div>
                     </div>
-                </form>
-                
+                </form> 
+                <div className="linea"><hr /></div>
+                <div className="policies">
+                    <h6>Que tenes que saber</h6>
+                    <p>Aqui irian las politicas de reserva</p>
+                </div> 
             </div>
     )
 }

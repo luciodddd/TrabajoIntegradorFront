@@ -34,12 +34,16 @@ input.inputBox{
 }
 
 .calendarElement{
-  position:absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 40px;
+  /* top: 40px; */
+  display: flex;  
   border: 1px solid #242526;
+  border-radius: 10px;
   z-index: 999;
+  background-color: transparent;
+}
+
+.ProductCalendar{
+  display: flex;
 }
 
 .rdrDateDisplayWrapper {
