@@ -12,9 +12,15 @@ div.single-product-main-reserva{
     align-items: center;
     padding-top: 100px;
 }
+
+
 .category-single-product{
     color: white;
     background-color: #545776;
+    display: flex;
+    flex-direction: column;
+    gap: 0%;
+    padding: 0%;
 }
 
 .location-single-product{
@@ -33,6 +39,18 @@ div.single-product-main-reserva{
     padding-left: 40px;
     width: 100%;
 } 
+
+.category-single-product h6{
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.category-single-product h3{
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: x-large;
+}
 
 .gallery-single-product{
     height: 500px;
@@ -61,6 +79,93 @@ div.single-product-main-reserva{
     max-width: 100%;
     max-height: 100%;
     border-radius: 20px;
+}
+
+.detail-container{
+    background-color: white;
+    width: 33%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 2%;
+}
+
+.detail-container-sub h6{
+    color: #545776;
+    font-weight: bold;
+    font-size: x-large; 
+    padding-bottom: 3%;
+}
+
+.detail-container-sub button{
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--aquamarine);
+    font-size: medium;
+    font-weight: bolder;
+    color: whitesmoke;
+    padding: 2%;
+    border: 0;
+}
+
+.category{
+    color: grey;
+    padding-top: 8%;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.name{
+    color: #545776;
+    font-weight: bold;
+    font-size: x-large; 
+}
+
+.stars{
+    color: var(--aquamarine);
+    font-size: small;
+    font-weight: bold;
+    padding-bottom: 5%;
+}
+
+.ubicacion{
+    color: #545776;
+    font-weight: bolder;
+    font-size: small; 
+    padding-bottom: 8%;
+}
+
+.check-in{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5%;
+}
+
+.check-in p{
+    color: #474B4E;
+    font-size: medium;
+    font-weight: bolder;
+}
+
+.check-in span{
+    color: #474B4E;
+    font-size: small;
+}
+
+.check-out p{
+    color: #474B4E;
+    font-size: medium;
+    font-weight: bolder;
+}
+
+.check-out span{
+    color: #474B4E;
+    font-size: small;
+}
+
+.check-out{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5%;
 }
 
 .description-single-product{
@@ -97,32 +202,102 @@ form {
     flex-direction: row;
     justify-content: space-between;
 }
-.detail-container{
-    background-color: white;
-    width: 33%;
-}
+
 .info-container{
     width: 63%;
 }
 .reservation-calendar{
-    padding-top: 30px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 10px;
+    padding-bottom: 40px;
 }
+
+.reservation-calendar h6{
+    color: #545776;
+    font-weight: bold;
+    font-size: x-large; 
+}
+
+.user-data{
+    color: black;
+    font-weight: bold;
+    font-size: small;
+    gap: 1%;
+}
+
+.user-data h6{
+    color: #545776;
+    font-weight: bold;
+    font-size: x-large; 
+}
+
 .user-data-form{
     background-color: white;
     width: 100%;
     display: grid;
+    border-radius: 8px;
     grid-template-columns: 45% 45%;
     grid-template-rows: 45% 45%;
-    gap: 5%;
+    gap: 10%;
+    padding: 4%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
 }
+
 .input-container{
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
+}
+
+.horario h6{
+    color: #545776;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.horario-input{
+    background-color: white;
+    width: 100%;
+    display: grid;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    padding-bottom: 40px;
+    padding: 3%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.horario-input h5{
+    color: #545776;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.horario-input p{
+    color: #545776;
+    font-weight: bold;
+    font-size: x-small;
 }
 
 .policies{
     background-color: white;
+    width: 90%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 4%;
+    margin-bottom: 2%;
 }
+
+.policies h6{
+    color: #545776;
+    font-weight: bold;
+    font-size: large;
+}
+
 .image-detail img{
     width: 100%;
     max-height: 400px;
