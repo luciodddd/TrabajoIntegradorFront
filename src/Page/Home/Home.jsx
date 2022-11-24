@@ -5,18 +5,18 @@ import "../../Style/home.css"
 import "../../Style/index.css"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-
+import "../../JSON/apiManagement.js"
 import React, {useState,useEffect} from 'react'
 import CarruselProducts from '../../Components/Content/CarruselProducts';
 import Searcher from '../../Components/Header/Searcher';
 import axios from 'axios';
 import Categories from '../../Components/Content/Categories';
-import { Carousel } from 'react-responsive-carousel';
+import { ALL_CATEGORIES, ALL_CITIES, ALL_PRODUCTS } from "../../JSON/apiManagement.js";
 
 
 
 function Home() {
-
+    console.log(ALL_CATEGORIES)
     // Logica js
     
     // Filtro categorías
@@ -31,7 +31,7 @@ function Home() {
     const [categories, setCategories] = useState([]);
     const getCategoriesAxios = async () => {
         try {
-            const resGet = await axios.get('http://localhost:8080/categories')
+            const resGet = await axios.get(ALL_CATEGORIES)
             setCategories(resGet.data)
             
         } catch (error) {
@@ -52,8 +52,8 @@ function Home() {
     
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get('http://localhost:8080/products')
-            const resGetCity = await axios.get('http://192.168.100.34:8080/cities')
+            const resGet = await axios.get(ALL_PRODUCTS)
+            const resGetCity = await axios.get(ALL_CITIES)
             const shuffledResponse = resGet.data.sort(() => 0.5 - Math.random());
             let selectedProducts = shuffledResponse.slice(0, 4);
             setRandomProducts(selectedProducts)

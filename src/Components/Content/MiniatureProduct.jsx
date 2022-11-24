@@ -15,7 +15,7 @@ const MiniatureProduct = (props) => {
                     <li><a href=""><i class="fa fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
-            <img src={props.product.image.url} alt={props.product.image.title} />
+            <img src={props.product.images[0].url} className="image-carusel" alt={props.product.images[0].title} />
         </div>
         <div class="down-content">
             <h4>{props.product.city.name}</h4>
