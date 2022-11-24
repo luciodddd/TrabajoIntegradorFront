@@ -7,6 +7,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
+import "../../Style/home.css"
 
 const Searcher = () => {
   const [range, setRange] = useState([
@@ -69,7 +70,7 @@ const Searcher = () => {
         </div> 
       </div>
     <div className='searcher-button'>
-          <button clasName='button-style' type="submit">Buscar</button>
+          <button type="submit">Buscar</button>
     </div>
     </div>
   )

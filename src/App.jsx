@@ -13,6 +13,7 @@ import Contact from './Page/Contacts/Contact';
 import userCredentials from "./JSON/user-list.json"
 import LoginPage from './Page/Login/LoginPage';
 import RegisterPage from './Page/Register/RegisterPage';
+import ReservaSuccess from './Page/ReservaSuccess/ReservaSuccess';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import SingleProductReserva from "./Page/SingleProductReserva/SingleProductReserva";
 
@@ -111,6 +112,7 @@ const registrationCheck = registrationInfo => {
       errorRegister={errorRegister} logged = {logged} />} />
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/reservas/:id" element={<SingleProductReserva />} />
+        <Route path="/ReservaSuccess" element={<ReservaSuccess />} />
       </Routes>
       <Footer/>
       </BrowserRouter>

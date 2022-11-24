@@ -173,7 +173,7 @@ div.container {
     margin: 10px;
   }
 
-  .city-search{
+  .city-search select{
     background-color: white;
     border-radius: 5px;
     height: 50px;
@@ -183,6 +183,7 @@ div.container {
     display: flex;
     justify-content: center;
   }
+
 
   .container-calendar{
     background-color: white;
@@ -194,14 +195,19 @@ div.container {
     justify-content: center;
   }
 
-  .searcher-button{
+  .searcher-button button {
     border-radius: 5px;
+    background-color: var(--aquamarine);
+    font-size: large;
+    font-weight: bolder;
+    color: whitesmoke;
     height: 50px;
-    width: 206px;
+    width: 422px;
     padding: 10px;
+    align-items: center;
     display: flex;
     justify-content: center;
-    background-color:  #1DBEB4;
+    border: 0;
   }
 
   .form-container form {

@@ -1,0 +1,47 @@
+
+
+.reserva{
+    background-color: white;
+    width: 30%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 0;
+    padding: 5%;
+    margin: 15%;
+    margin-left: 35%;
+}
+
+.msj-reserva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    direction: center;
+    justify-content: center;
+}
+
+.msj-reserva h6{
+    color: var(--aquamarine);
+    padding-bottom: 1%;
+    font-weight: bolder;
+    font-size: x-large; 
+}
+
+.msj-reserva h3{
+    color: black;
+    padding-bottom: 10%;
+    font-weight: bold;
+    font-size: medium; 
+}
+
+
+ button{
+    background-color: #1DBEB4;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: medium; 
+    border: 0;
+    height: 10%;
+    padding: 1%;
+    width: 100%;
+  }
