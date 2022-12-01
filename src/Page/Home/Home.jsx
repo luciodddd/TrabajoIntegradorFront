@@ -8,7 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../JSON/apiManagement.js"
 import React, {useState,useEffect} from 'react'
 import CarruselProducts from '../../Components/Content/CarruselProducts';
-import Searcher from '../../Components/Header/Searcher';
+import Searcher2 from '../../Components/Header/Searcher2';
 import axios from 'axios';
 import Categories from '../../Components/Content/Categories';
 import { ALL_CATEGORIES, ALL_CITIES, ALL_PRODUCTS } from "../../JSON/apiManagement.js";
@@ -69,7 +69,7 @@ function Home() {
                 <h1 className='search-title'>Busca ofertas en hoteles, casas y mucho más</h1>
             </div>
             <div class="container-searcher">
-                <Searcher cities={cities}></Searcher>
+                <Searcher2 cities={cities}></Searcher2>
             </div>
         </section>
         <section class="section">

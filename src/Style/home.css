@@ -273,6 +273,7 @@ div.container {
   .image-carusel{
     width:100%;
     height:100%;
+    object-fit: contain;
   }
   
   div .carousel.carousel-slider .control-arrow {
@@ -320,7 +321,17 @@ div.container {
       font-weight: 700;
       color: var(--violet);
     }
-    
+    #container-ciudades-listado-2{
+      z-index: 100;
+      background-color: white;
+    }
+    .container-ciudades-listado,.city{
+      background-color: white;
+    }
+    .city-searcher{
+      background-color: white;
+      color: #1DBEB4;
+    }
    }
    @media (max-width: 375px) { 
     .search-title {
