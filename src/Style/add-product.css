@@ -1,3 +1,6 @@
+form {
+    width: 90%;
+}
 
 .section-title{
     color: white;
@@ -8,14 +11,6 @@
     font-size: large;
 }
 
-.form-container{
-    width: 90%;
-    background-color: rgb(223, 218, 218);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
 
 .add-icon button {
