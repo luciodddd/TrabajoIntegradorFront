@@ -1,0 +1,34 @@
+
+.section-title{
+    color: white;
+    width: 100%;
+    background-color: #545776;
+    align-items: left;
+    padding: 1%;
+    font-size: large;
+}
+
+.form-container{
+    width: 90%;
+    background-color: rgb(223, 218, 218);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-icon button {
+    font-size: x-large;
+    width: 3%;
+}
+
+.add-imagen button {
+    font-size: x-large;
+    width: 3%;
+}
+
+.create button {
+    font-size: x-large;
+    width: 6%;
+}
