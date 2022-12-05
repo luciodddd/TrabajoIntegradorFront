@@ -15,6 +15,7 @@ import LoginPage from './Page/Login/LoginPage';
 import RegisterPage from './Page/Register/RegisterPage';
 import ReservaSuccess from './Page/ReservaSuccess/ReservaSuccess';
 import AddProduct from './Page/AddProduct/AddProduct';
+import ProductSuccess from './Page/ProductSuccess/ProductSuccess';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import SingleProductReserva from "./Page/SingleProductReserva/SingleProductReserva";
 
@@ -115,6 +116,7 @@ const registrationCheck = registrationInfo => {
         <Route path="/reservas/:id" element={<SingleProductReserva />} />
         <Route path="/ReservaSuccess" element={<ReservaSuccess />} />
         <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/ProductSuccess" element={<ProductSuccess />} />
       </Routes>
       <Footer/>
       </BrowserRouter>
@@ -123,3 +125,7 @@ const registrationCheck = registrationInfo => {
 }
 
 export default App;
+
+
+
+
