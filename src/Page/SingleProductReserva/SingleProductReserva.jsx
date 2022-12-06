@@ -3,7 +3,7 @@ import "../../Style/single-product.css"
 import "../../Style/bootstrap.min.css"
 
 import React, {useState, useEffect} from 'react'
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import axios from 'axios';
 import ProductCalendar from '../../Components/Header/ProductCalendar';
 
@@ -119,7 +119,9 @@ function SingleProduct() {
                                     <span>29/11/2022</span>
                                 </div>
                                 <hr />
-                                <button type="submit">Confirmar reserva</button>
+                                <Link class="home" to={{ pathname: "/ReservaSuccess"}}>
+                                    <button type="submit">Confirmar reserva</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

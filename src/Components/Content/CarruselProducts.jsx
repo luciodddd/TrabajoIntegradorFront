@@ -6,6 +6,7 @@ import { Carousel } from 'react-responsive-carousel';
 const CarruselProducts = (props) => {
 
     const carruselItems = props.data.map(e => {
+        
     return(<MiniatureProduct product={e} key={e.id}/>)})
     
     return (
@@ -16,11 +17,3 @@ const CarruselProducts = (props) => {
 }
 
 export default CarruselProducts
-
-/*<div class="col-lg-12">
-    <div class="men-item-carousel">
-        <div class="owl-men-item owl-carousel">
-            {carruselItems}
-        </div>
-    </div>
-</div>*/

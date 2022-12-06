@@ -45,10 +45,6 @@ function Home() {
         getCategoriesAxios()
     }, []);
 
-    const categorySection = categories.map(e => {
-        return(<Categories filter={activeCategoryFilter} category={e} key={e.id} active={categoryFilter}/>)
-    })
-
     // Conexión productos:
     const [allProducts, setAllProducts] = useState([]);
     
@@ -73,6 +69,10 @@ function Home() {
 
         console.log(categoryFilter)
     }, [categoryFilter]);
+
+    const categorySection = categories.map(e => {
+        return(<Categories filter={activeCategoryFilter} category={e} key={e.id} active={categoryFilter}/>)
+    })
 
     const displayItems = allProducts.map(e => {
         return(<MiniatureProduct product={e} key={e.id}/>)})

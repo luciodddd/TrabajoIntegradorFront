@@ -24,7 +24,6 @@ const Categories = (props) => {
       getProductsAxios()
   }, []);
 
-
     return (
     
     <div className='individual-category'
@@ -36,7 +35,7 @@ const Categories = (props) => {
       <Link to={{ pathname: `/categoria/${props.category.id}`}}>
         <img src = {props.category.image.url}></img>
         <h2>{props.category.title}</h2>
-        <span>x hoteles</span>
+        <span>{allProducts.length} hoteles</span>
         </Link>
     </div>
     

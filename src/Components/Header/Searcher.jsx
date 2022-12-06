@@ -7,6 +7,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
+import "../../Style/home.css"
 
 const Searcher = () => {
   const [range, setRange] = useState([
@@ -44,12 +45,10 @@ const Searcher = () => {
         <Calendar className="calendar-searcher" showDoubleView={true} onChange={onChange} value={date}></Calendar>
     </div>*/}
     <div className='city-search'>
-    {/* <form className='searcher-nav'> */}
         <select required name="city" id="city search-location" className='search-input'>
         <option className="placeholder-selected" value="" disabled selected hidden> A dónde vamos?</option>
           {ciudades.map(e=> {return(<option value={e}>{e}</option>)})}
         </select>
-        {/*<input className='search-input' type="text" placeholder='Dónde quieres ir?' id="search-location"/>*/}
     </div>
         {/* <a className='vertical-line'></a> */}
     <div className='container-calendar'>
@@ -70,9 +69,8 @@ const Searcher = () => {
           </div>
         </div> 
       </div>
-    {/* </form> */}
     <div className='searcher-button'>
-          <button clasName='button-style' type="submit">Buscar</button>
+          <button type="submit">Buscar</button>
     </div>
     </div>
   )
