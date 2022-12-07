@@ -14,6 +14,7 @@ import userCredentials from "./JSON/user-list.json"
 import LoginPage from './Page/Login/LoginPage';
 import RegisterPage from './Page/Register/RegisterPage';
 import ReservaSuccess from './Page/ReservaSuccess/ReservaSuccess';
+import MisReservas from './Page/MisReservas/MisReservas';
 import AddProduct from './Page/AddProduct/AddProduct';
 import ProductSuccess from './Page/ProductSuccess/ProductSuccess';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
@@ -115,6 +116,7 @@ const registrationCheck = registrationInfo => {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/reservas/:id" element={<SingleProductReserva />} />
         <Route path="/ReservaSuccess" element={<ReservaSuccess />} />
+        <Route path="/MisReservas" element={<MisReservas />} />
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/ProductSuccess" element={<ProductSuccess />} />
       </Routes>
