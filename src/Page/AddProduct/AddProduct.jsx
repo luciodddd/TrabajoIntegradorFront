@@ -4,9 +4,51 @@ import "../../Style/bootstrap.min.css"
 import React, {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom"
 import axios from 'axios';
+import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS} from "../../JSON/apiManagement.js";
 
 
 function AddProduct() {
+
+    // Variables
+    const [categories, setCategories] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [details, setDetails] = useState([]);
+    const [detailsExtra, setDetailsExtra] = useState([]);
+
+    
+
+    // Conexión
+    const getCategoriesAxios = async () => {
+        try {
+            const resCategories = await axios.get(ALL_CATEGORIES)
+            const resCities = await axios.get(ALL_CITIES)
+            const resDetails = await axios.get(ALL_CHARACTERISTICS)
+            setCategories(resCategories.data)
+            setCities(resCities.data)
+            setDetails(resDetails.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getCategoriesAxios()
+    }, []);
+
+    const categoryList = categories.map(e => {
+        return(<option key={e.id} value={e.id}>{e.title}</option>)})
+    const cityList = cities.map(e => {
+        return(<option key={e.id} value={e.id}>{e.name}</option>)})
+    const detailsList = details.map(e => {
+        return(<span class="details-box"><input type="checkbox" id={e.id} name={e.id} value={e.id}/>
+            <label for={e.id}> {e.name}</label></span>)})
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")        
+    }
+    const addCategory = () => {
+        
+    }
     
     return (
             <div className="frame-add-product">
@@ -24,40 +66,43 @@ function AddProduct() {
                                 <div className="user-data-form">
                                     <div className="input-container">
                                         <label for="name">Nombre de la propiedad</label>
-                                        <input type="text" defaultValue="Las Marias" required name="name" id="name"/>
+                                        <input type="text" placeholder="Nombre de la propiedad" required name="name" id="name"/>
                                     </div>
                                     <div className="input-container">
                                         <label for="categoria">Categoria</label>
-                                        <input type="text" defaultValue="Hotel" required name="category" id="category"/>
+                                        <select type="select" required name="category" id="category">
+                                        {categoryList}</select>
                                     </div>
                                     <div className="input-container">
                                         <label for="adrress">Direccion</label>
-                                        <input type="text" defaultValue="Av. Colon 1654" required name="adress" id="adress"/>
+                                        <input type="text" placeholder="Dirección" required name="adress" id="adress"/>
                                     </div>
                                     <div className="input-container">
                                         <label for="city">Ciudad</label>
-                                        <input type="text" defaultValue="Córdoba" required name="city" id="city"/>
+                                        <select type="select" required name="city" id="city">
+                                        {cityList}</select>
                                     </div>
                                 </div>
                                 <div className="input-container">
                                     <label for="description">Descripcion</label>
-                                    <input type="text" defaultValue="Deja aqui un comentario de tu propiedad" required name="description" id="description"/>
+                                    <input type="text" placeholder="Deja aqui un comentario de tu propiedad" required name="description" id="description"/>
                                 </div>
                             </div>                           
                             <div className="add-atributes">
                                 <h6>Agregar Atributos</h6>    
                                 <div className="add-atributes-icon">
                                     <div className="input-container">
-                                        <label for="name">Nombre</label>
-                                        <input type="name" defaultValue="Nombre" required name="name" id="name"/>
+                                    {detailsList}
+                                    {detailsExtra}
                                     </div>
                                     <div className="input-container">
-                                        <label for="icono">Nombre</label>
-                                        <input type="icono" defaultValue="Icono" required name="icono" id="icono"/>
+                                        <label for="icono">Agregar Característica</label>
+                                        <input type="text" placeholder="Característica" name="addCaracteristic" id="addCaracteristic"/>
+                                        <div onClick={addCategory}>a</div>
                                     </div>
                                     <div className="input-container">
                                         <Link class="add-icon" to={{ pathname: "/"}}>
-                                            <button type="submit">+</button>
+                                            {/*<button type="submit" onSubmit={handleSubmit}>+</button>*/}
                                         </Link>
                                     </div>
                                 </div>
@@ -84,14 +129,12 @@ function AddProduct() {
                             <div className="Add-imagenes">
                                 <input type="url" defaultValue="https://" required name="url" id="url"/>
                                 <Link class="add-imagen" to={{ pathname: "/"}}>
-                                    <button type="submit">+</button>
+                                    {/*<button type="submit" onSubmit={handleSubmit}>+</button>*/}
                                 </Link>
                             </div>
                         </div>
                     </div>
-                    <Link class="create" to={{ pathname: "/"}}>
-                        <button type="submit">Crear</button>
-                    </Link>
+                        <button type="submit" onSubmit={(e)=>{handleSubmit(e)}}>Crear</button>
                 </form> 
             </div>
     )

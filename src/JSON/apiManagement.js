@@ -27,6 +27,6 @@ export const ALL_CITIES = `http://${ip}:8080/cities`
 
 
 /*-------------- Characteristics --------------*/
-//export const ALL_CHARACTERISTICS = `http://${ip}:8080/characteristics/all`
+export const ALL_CHARACTERISTICS = `http://${ip}:8080/details`
 
 
