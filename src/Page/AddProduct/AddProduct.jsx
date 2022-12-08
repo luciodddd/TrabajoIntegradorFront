@@ -2,9 +2,9 @@ import "../../Style/add-product.css"
 import "../../Style/bootstrap.min.css"
 
 import React, {useState, useEffect} from 'react'
-import {Link, useParams} from "react-router-dom"
+import {Link} from "react-router-dom"
 import axios from 'axios';
-import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS} from "../../JSON/apiManagement.js";
+import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS,CREATE_PRODUCT} from "../../JSON/apiManagement.js";
 
 
 function AddProduct() {
@@ -14,8 +14,7 @@ function AddProduct() {
     const [cities, setCities] = useState([]);
     const [details, setDetails] = useState([]);
     const [detailsExtra, setDetailsExtra] = useState([]);
-
-    
+    const [detailsSelected, setDetailsSelected] = useState([]);
 
     // Conexión
     const getCategoriesAxios = async () => {
@@ -33,23 +32,68 @@ function AddProduct() {
     useEffect(() => {
         getCategoriesAxios()
     }, []);
+    
+    const detailHandler = (e) => {
+        
+        if (e.target.checked === true) {
+            console.log("hola")
+            setDetailsSelected(...detailsSelected, e.target.value)
+        }
+        else {
+            setDetailsSelected(detailsSelected.filter(det => det !== e.target.value))
+        }
+        console.log(detailsSelected)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")
+        postProductAxios()
+    }
+
+    const bodyContructor = () => {
+        const name = document.getElementById('name')
+        const description = document.getElementById('description')
+        const categoryID = document.getElementById('category')
+        const cityID = document.getElementById('city')
+        const detailID = detailsSelected
+        const policyID = []
+        const imageID = []
+
+        const body = {
+            'cityID': cityID,
+            'categoryID': categoryID,
+            'imageIds': imageID,
+            'detailIds': detailID,
+            'policyIds': policyID,
+            'name': name,
+            'description': description
+        }
+        return body
+    }
+
+    const postProductAxios = async () => {
+        try {
+            const resCategories = await axios.post(CREATE_PRODUCT,bodyContructor)
+            console.log(resCategories)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const addCategory = () => {
+    }
+    
+    // AGREGAR ELEMENTOS DINÁMICAMENTE:
 
     const categoryList = categories.map(e => {
         return(<option key={e.id} value={e.id}>{e.title}</option>)})
     const cityList = cities.map(e => {
         return(<option key={e.id} value={e.id}>{e.name}</option>)})
     const detailsList = details.map(e => {
-        return(<span class="details-box"><input type="checkbox" id={e.id} name={e.id} value={e.id}/>
+        return(<span class="details-box"><input type="checkbox" class="checkboxDetails" id={e.id} name={e.id} value={e.id} onChange={(e)=>detailHandler(e)}/>
             <label for={e.id}> {e.name}</label></span>)})
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")        
-    }
-    const addCategory = () => {
-        
-    }
-    
+
     return (
             <div className="frame-add-product">
                 <hr />
@@ -97,12 +141,12 @@ function AddProduct() {
                                     </div>
                                     <div className="input-container">
                                         <label for="icono">Agregar Característica</label>
-                                        <input type="text" placeholder="Característica" name="addCaracteristic" id="addCaracteristic"/>
+                                        <input type="text" placeholder="Característica" name="addDetail" id="addDetail"/>
                                         <div onClick={addCategory}>a</div>
                                     </div>
                                     <div className="input-container">
                                         <Link class="add-icon" to={{ pathname: "/"}}>
-                                            {/*<button type="submit" onSubmit={handleSubmit}>+</button>*/}
+                                            <button type="submit" onSubmit={handleSubmit}>+</button>
                                         </Link>
                                     </div>
                                 </div>

@@ -6,8 +6,7 @@ export const ALL_PRODUCTS = `http://${ip}:8080/products`
 export const PRODUCT_BY_ID = `http://${ip}:8080/products/`
 //export const PRODUCT_DATES_BY_ID = `http://${ip}:8080/products/availability/`
 //export const PRODUCTS_BY_DATES_OR_CITY = `http://${ip}:8080/products/available?`
-//export const CREATE_PRODUCT = `http://${ip}:8080/products/save`
-
+export const CREATE_PRODUCT = `http://${ip}:8080/products`
 
 /*-------------- Categories ----------------*/
 export const ALL_CATEGORIES = `http://${ip}:8080/categories`
@@ -25,8 +24,6 @@ export const ALL_CITIES = `http://${ip}:8080/cities`
 //export const POST_RESERVATION = `http://${ip}:8080/reservations/save`
 //export const RESERVATIONS_BY_USER_ID = `http://${ip}:8080/reservations/user/`
 
-
 /*-------------- Characteristics --------------*/
 export const ALL_CHARACTERISTICS = `http://${ip}:8080/details`
-
 
