@@ -4,7 +4,7 @@ import "../../Style/bootstrap.min.css"
 import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom"
 import axios from 'axios';
-import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS,CREATE_PRODUCT} from "../../JSON/apiManagement.js";
+import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS,CREATE_PRODUCT,IMAGES,ALL_POLOCIES} from "../../JSON/apiManagement.js";
 
 
 function AddProduct() {
@@ -13,8 +13,10 @@ function AddProduct() {
     const [categories, setCategories] = useState([]);
     const [cities, setCities] = useState([]);
     const [details, setDetails] = useState([]);
-    const [detailsExtra, setDetailsExtra] = useState([]);
     const [detailsSelected, setDetailsSelected] = useState([]);
+    const [images, setImages] = useState([]);
+    const [policies,setPolicies] = useState([])
+    //const [detailsExtra, setDetailsExtra] = useState([]);
 
     // Conexión
     const getCategoriesAxios = async () => {
@@ -29,37 +31,89 @@ function AddProduct() {
             console.log(error);
         }
     }
+
+    const postImagesAxios = async () => {
+        const imageUrl = document.getElementById('url');
+        const imageBody = {"imageUrl": imageUrl.value,
+                            "title": "Imagen del producto"}
+        try {
+            const resImage = await axios.post(IMAGES,imageBody)
+            setImages([...images,resImage.data])
+        } catch (error) {console.log(error)}
+        imageUrl.value = ""}
+
+    const postPoliciesAxios = async (policy) => {
+        const bodyPolicy = {
+            "title": policy.name,
+            "description": policy.value
+        }
+        try {
+            const resPolicy = await axios.post(ALL_POLOCIES,bodyPolicy)
+            setPolicies([...policies,resPolicy.data.id])
+        } catch (error) {console.log(error)}}
+
+        
+    const deleteImageAxios = async (e) => {
+        const imageId = e.target.id
+        console.log(imageId)
+        try {
+            const resImage = await axios.delete(IMAGES+`/${imageId}`)
+            console.log(resImage)
+            setImages(images.filter(img => img.id !== imageId))
+        } catch (error) {console.log(error)}}
+
+    const postProductAxios = async () => {
+        try {
+            const resCategories = await axios.post(CREATE_PRODUCT,bodyContructor)
+            console.log(resCategories)
+        } catch (error) {
+            console.log(error);
+        }}
+
     useEffect(() => {
         getCategoriesAxios()
     }, []);
     
+    // HANDLERS:
+    const uploadImage = (e) => {
+        postImagesAxios()
+    }
+
     const detailHandler = (e) => {
-        
         if (e.target.checked === true) {
-            console.log("hola")
-            setDetailsSelected(...detailsSelected, e.target.value)
+            let newIdDetail = e.target.value
+            setDetailsSelected([...detailsSelected, newIdDetail])
         }
         else {
             setDetailsSelected(detailsSelected.filter(det => det !== e.target.value))
         }
         console.log(detailsSelected)
     }
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")
-        postProductAxios()
+        postPolicies()
+        bodyContructor()
+        //postProductAxios()
+
+    }
+
+    const postPolicies = () => {
+        const policyList = document.querySelectorAll('#policy')
+        const policyArray = Array.prototype.slice.call(policyList);
+        policyArray.map(pol => {
+            postPoliciesAxios(pol)})
+        console.log(policies)
     }
 
     const bodyContructor = () => {
-        const name = document.getElementById('name')
-        const description = document.getElementById('description')
-        const categoryID = document.getElementById('category')
-        const cityID = document.getElementById('city')
+        const name = document.getElementById('name').value
+        const description = document.getElementById('description').value
+        const categoryID = document.getElementById('category').value
+        const cityID = document.getElementById('city').value
         const detailID = detailsSelected
-        const policyID = []
-        const imageID = []
-
+        const policyID = policies
+        const imageID = images.map(el => {return(el.id)})
+        console.log(imageID)
         const body = {
             'cityID': cityID,
             'categoryID': categoryID,
@@ -69,17 +123,11 @@ function AddProduct() {
             'name': name,
             'description': description
         }
+        console.log(body)
         return body
     }
 
-    const postProductAxios = async () => {
-        try {
-            const resCategories = await axios.post(CREATE_PRODUCT,bodyContructor)
-            console.log(resCategories)
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
 
     const addCategory = () => {
     }
@@ -93,6 +141,9 @@ function AddProduct() {
     const detailsList = details.map(e => {
         return(<span class="details-box"><input type="checkbox" class="checkboxDetails" id={e.id} name={e.id} value={e.id} onChange={(e)=>detailHandler(e)}/>
             <label for={e.id}> {e.name}</label></span>)})
+    const imageList = images.map((el,index) => {
+        return(<div><span>Imagen {index+1}</span>
+                <button class="button-delete" key={el.id} id={el.id} type="button" onClick={(e) => deleteImageAxios(e)}>Eliminar</button></div>)})
 
     return (
             <div className="frame-add-product">
@@ -102,7 +153,7 @@ function AddProduct() {
                     <hr />
                     <h1>Administracion</h1>
                 </div>
-                <form>
+                <form onSubmit={(e) => handleSubmit(e)}>
                     <h6>Crear Propiedad</h6>
                     <div className='form-cointainer'>
                         <div className="info-container">
@@ -137,9 +188,9 @@ function AddProduct() {
                                 <div className="add-atributes-icon">
                                     <div className="input-container">
                                     {detailsList}
-                                    {detailsExtra}
+                                    {/*detailsExtra*/}
                                     </div>
-                                    <div className="input-container">
+                                    {/*<div className="input-container">
                                         <label for="icono">Agregar Característica</label>
                                         <input type="text" placeholder="Característica" name="addDetail" id="addDetail"/>
                                         <div onClick={addCategory}>a</div>
@@ -148,37 +199,36 @@ function AddProduct() {
                                         <Link class="add-icon" to={{ pathname: "/"}}>
                                             <button type="submit" onSubmit={handleSubmit}>+</button>
                                         </Link>
-                                    </div>
+                                    </div>*/}
                                 </div>
                             </div>
                             <h6>Politicas del Producto</h6>
                             <div className="poli-product">
-                                <div className="input-container">
+                                <div className="poli-product-info">
                                     <h3>Normas de la casa</h3>
-                                    <label for="normas">Normas de la casa</label>
-                                    <input type="normas" defaultValue="Escriba Aqui" required name="normas" id="normas"/>
+                                    <label for="normas">Descripcion</label>
+                                    <input type="normas" placeholder="Escribir aqui" required name="normas" id="normas"/>
                                 </div>
-                                <div className="input-container">
+                                <div className="poli-product-info">
                                     <h3>Salud y Seguridad</h3>
                                     <label for="descripcion">Descripcion</label>
-                                    <input type="descripcion" defaultValue="Escriba Aqui" required name="descripcion" id="descripcion"/>
+                                    <input type="descripcion" placeholder="Escribir aqui" required name="saludSeguridad" id="saludSeguridad"/>
                                 </div>
-                                <div className="input-container">
+                                <div className="poli-product-info">
                                     <h3>Politica de Cancelacion</h3>
                                     <label for="Cancelacion">Descripcion</label>
-                                    <input type="Cancelacion" defaultValue="Escriba Aqui" required name="Cancelacion" id="Cancelacion"/>
+                                    <input type="Cancelacion" placeholder="Escribir aqui" required name="Cancelacion" id="Cancelacion"/>
                                 </div>
                             </div>
                             <h6>Cargar Imagenes</h6>
-                            <div className="Add-imagenes">
-                                <input type="url" defaultValue="https://" required name="url" id="url"/>
-                                <Link class="add-imagen" to={{ pathname: "/"}}>
-                                    {/*<button type="submit" onSubmit={handleSubmit}>+</button>*/}
-                                </Link>
-                            </div>
+                            {imageList}
+                            {(images.length<5)?(<div className="Add-imagenes">
+                                <input type="url" placeholder="https://" required name="url" id="url"/>
+                                <button class="button" type="button" onClick={(e) => uploadImage(e)}>+</button>
+                            </div>):<span>Solamente se pueden cargar 5 imágenes por producto</span>}
                         </div>
                     </div>
-                        <button type="submit" onSubmit={(e)=>{handleSubmit(e)}}>Crear</button>
+                        <input type="submit" value="Crear"/>
                 </form> 
             </div>
     )

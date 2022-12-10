@@ -70,10 +70,10 @@ function SingleProduct() {
                         <img src={singleProduct.images[0].url} alt={singleProduct.images[0].name}></img>
                     </div>
                     <div className="right-half-image">
-                        <div className='image-gallery'><img  src={singleProduct.images[1].url} alt={singleProduct.images[1].name} /></div>
-                        <div className='image-gallery'><img  src={singleProduct.images[2].url} alt={singleProduct.images[2].name} /></div>
-                        <div className='image-gallery'><img  src={singleProduct.images[3].url} alt={singleProduct.images[3].name} /></div>
-                        <div className='image-gallery'><img  src={singleProduct.images[4].url} alt={singleProduct.images[4].name} /></div>
+                        {(singleProduct.images[1]!=null)?<div className='image-gallery'><img  src={singleProduct.images[1].url} alt={singleProduct.images[1].name} /></div>:""}
+                        {(singleProduct.images[2]!=null)?<div className='image-gallery'><img  src={singleProduct.images[2].url} alt={singleProduct.images[2].name} /></div>:""}
+                        {(singleProduct.images[3]!=null)?<div className='image-gallery'><img  src={singleProduct.images[3].url} alt={singleProduct.images[3].name} /></div>:""}
+                        {(singleProduct.images[4]!=null)?<div className='image-gallery'><img  src={singleProduct.images[4].url} alt={singleProduct.images[4].name} /></div>:""}
                     </div>
                 </section>
                 <div className="description-single-product">

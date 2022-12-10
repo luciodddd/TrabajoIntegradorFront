@@ -1,0 +1,53 @@
+/* GENERALES */
+
+.titulo{
+    color: white;
+    align-content: center;
+    font-weight: bold;
+    font-size: x-large;
+    background-color: #545776;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    width: 100%;
+}
+
+
+.Reservas-confirm{
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 50px;
+    background-color: white;
+    width: 100%;
+    padding: 1%;
+}
+
+.Reservas-confirmadas{
+    width: 75%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: 1%;
+    padding: 1%;
+    align-items: center;
+    align-content: center;
+}
+
+h3{
+    color: #545776;
+    margin: 1%;
+    font-weight: bold;
+    font-size: medium;
+}
+
+
+.boton-voler{
+    width: 30%;
+    height: 50px;
+}
+

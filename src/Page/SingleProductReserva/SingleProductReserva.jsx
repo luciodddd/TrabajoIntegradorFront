@@ -6,10 +6,12 @@ import React, {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom"
 import axios from 'axios';
 import ProductCalendar from '../../Components/Header/ProductCalendar';
+import {PRODUCT_BY_ID} from "../../JSON/apiManagement.js";
+import Policy from "../../Components/Content/Policy";
 
 function SingleProduct() {
     const productId = useParams().id
-    const [singleProduct, setSingleProduct] = useState({
+    const [singleProduct, setSingleProduct] = useState(/*{
         "id": "",
         "name": "",
         "description": "",
@@ -41,25 +43,25 @@ function SingleProduct() {
         "details":[{
             "id":"",
             "name":""
-        }]})
-    /*const getProductsAxios = async () => {
+        }]}*/)
+    const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get(`http://localhost:8080/products/${productId}`)
+            const resGet = await axios.get(PRODUCT_BY_ID+productId)
             setSingleProduct(resGet.data)
-            console.log(resGet.data)
         } catch (error) {
             console.log(error);
         }
     }
-    useEffect(() => {getProductsAxios(1)}, []);*/
+    const policies = (singleProduct!=null)?(singleProduct.policies.map(pol => {return(
+        <Policy pol={pol}></Policy>
+    )})):""
+    useEffect(() => {getProductsAxios()}, []);
     
     return (
             <div className="single-product-main-reserva">
-                <div className='category-single-product'>
-                    {/* <h6>{singleProduct.category.title}</h6>
-                    <h3>{singleProduct.name}</h3> */}
-                    <h6>Hotel</h6>
-                    <h3>Las Tres Marias</h3>
+                    <div className='category-single-product'>
+                    {(singleProduct!=null)?(<h6>{singleProduct.category.title}</h6>):""}
+                    {(singleProduct!=null)?(<h3>{singleProduct.name}</h3>):""}
                 </div>
                 <form>
                     <div className='form-cointainer'>
@@ -95,6 +97,13 @@ function SingleProduct() {
                                 <div className="horario-input">
                                     <h5>Tu habitacion va a estar lista para el check in entre las 9:00 AM y las 11:00 PM</h5>
                                     <p>Indica tu horario estimado de llegada</p>
+                                    <select id="arrivingTime">
+                                        <option value="9:00">9:00</option>
+                                        <option value="9:30">9:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -102,11 +111,12 @@ function SingleProduct() {
                             <div className="detail-container-sub">
                                 <h6>Detalle de la reserva</h6>
                                 <div className="image-detail">
-                                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="image" />
+                                    {(singleProduct!=null)?(<img src={singleProduct.images[0].url}/>):""}
                                 </div>
-                                <div className="category">HOTEL</div>
-                                <div className="name">Hotel Las 3 Marías</div>
-                                <div className="stars">5 Estrellas</div>
+                                {(singleProduct!=null)?(<div className="category">{singleProduct.category.title}</div>):""}
+                                {(singleProduct!=null)?(<div className="name">{singleProduct.name}</div>):""}
+                                
+                                <div className="stars">{Math.floor(Math.random() * 5)} Estrellas</div>
                                 <div className="ubicacion">Avenida Colon 167, Mar del Plata, Buenos Aires, Argentina</div>
                                 <hr />
                                 <div className="check-in">
@@ -127,9 +137,10 @@ function SingleProduct() {
                     </div>
                 </form> 
                 <div className="linea"><hr /></div>
+                <h6 styles="text-align:left;">Que tenes que saber</h6>
                 <div className="policies">
-                    <h6>Que tenes que saber</h6>
-                    <p>Aqui irian las politicas de reserva</p>
+                    {(singleProduct!=null)?(policies):""}
+                    
                 </div> 
             </div>
     )

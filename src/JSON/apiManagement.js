@@ -8,6 +8,9 @@ export const PRODUCT_BY_ID = `http://${ip}:8080/products/`
 //export const PRODUCTS_BY_DATES_OR_CITY = `http://${ip}:8080/products/available?`
 export const CREATE_PRODUCT = `http://${ip}:8080/products`
 
+/*-------------- Images ----------------*/
+export const IMAGES = `http://${ip}:8080/images`
+
 /*-------------- Categories ----------------*/
 export const ALL_CATEGORIES = `http://${ip}:8080/categories`
 
@@ -26,4 +29,5 @@ export const ALL_CITIES = `http://${ip}:8080/cities`
 
 /*-------------- Characteristics --------------*/
 export const ALL_CHARACTERISTICS = `http://${ip}:8080/details`
-
+/*-------------- Policies --------------*/
+export const ALL_POLOCIES = `http://${ip}:8080/policies`
