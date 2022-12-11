@@ -8,6 +8,9 @@ import {useParams} from "react-router-dom"
 import axios from 'axios';
 import ProductCalendar from '../../Components/Header/ProductCalendar';
 import { PRODUCT_BY_ID } from "../../JSON/apiManagement.js"
+import Button from '../../Components/Header/Button'
+import Detail from '../../Components/Header/Detail'
+
 
 function SingleProduct() {
     const productId = useParams().id
@@ -54,6 +57,9 @@ function SingleProduct() {
         }
     }
     useEffect(() => {getProductsAxios(1)}, []);
+    let detailList = singleProduct.details.map(detail => {
+        return(<Detail detail={detail} key={detail.id}/>)
+    })
     
     return (
             <div className="single-product-main">
@@ -77,11 +83,18 @@ function SingleProduct() {
                     </div>
                 </section>
                 <div className="description-single-product">
-                    <h6>{singleProduct.description}</h6>
+                    <div><h6>Características</h6></div>
+                    <div className="details-container">{detailList}</div>
                 </div>
-                <div className="Fecha-disponible">
+                <div className="description-single-product">
+                    <div><h6>Descripción</h6></div>
+                    <div><p>{singleProduct.description}</p></div>
+                </div>
                     <h6>Fechas Disponibles</h6>
+                <div className="Fecha-disponible">
                     <ProductCalendar></ProductCalendar>
+                    <Button className="login-buttons single-product-button" link={`reservas/${productId}`} text="Reservar"></Button>
+
                 </div>
             </div>
     )

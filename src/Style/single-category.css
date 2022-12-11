@@ -8,11 +8,10 @@
 
 .thumb .image-carusel{
     max-width: 100%;
-    
 }
 #image-carrusel{
     max-height: 200px;
 }
-.thumb {
+product-by-category-display .thumb {
     height: 200px ;
 }

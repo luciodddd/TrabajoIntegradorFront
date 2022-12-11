@@ -18,6 +18,7 @@ const ProductCalendar = () => {
     document.addEventListener("keydown",hideOnEscape,true)
   }, [])
 
+  
   const hideOnEscape = (e) =>{
     console.log(e.key)
     if(e.key === "Escape"){
@@ -67,7 +68,7 @@ const ProductCalendar = () => {
                 minValue={today(getLocalTimeZone())}
                 label="Trip dates"
               />
-             }
+            }
           </div>
         </div> 
     </div>

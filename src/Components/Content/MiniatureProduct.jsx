@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { FaRegStar , FaSuitcaseRolling} from 'react-icons/fa';
+import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const MiniatureProduct = (props) => {
     console.log(props.product)
@@ -9,11 +11,10 @@ const MiniatureProduct = (props) => {
             <div class="hover-content">
                 <ul>
                     <Link to={{ pathname: `/product/${props.product.id}`}}>
-                    <li><a href=""><i class="fa fa-eye"></i></a></li>
+                    <li><a href=""><BsFillPlusCircleFill /></a></li>
                     </Link>
-                    <li><a href=""><i class="fa fa-star"></i></a></li>
                     <Link to={{ pathname: `/reservas/${props.product.id}`}}>
-                    <li><a href=""><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href=""><FaSuitcaseRolling /></a></li>
                     </Link>
                 </ul>
             </div>
@@ -24,7 +25,7 @@ const MiniatureProduct = (props) => {
             <span>${Math.floor(Math.random() * 1000)} por noche</span>
             <span className="carrusel-category">{props.product.category.title}</span>
             <ul class="stars">
-                <li><i class="fa fa-star"></i>{Math.floor(Math.random() * 10)}</li>
+                <li>{Math.floor(Math.random() * 10)}<FaRegStar /></li>
             </ul>
         </div>
     </div>)

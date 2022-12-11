@@ -5,7 +5,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom"
 import axios from 'axios';
 import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS,CREATE_PRODUCT,IMAGES,ALL_POLOCIES} from "../../JSON/apiManagement.js";
-
+import { FaWifi , FaSwimmer,FaCoffee,FaUtensils,FaSnowflake,FaSmokingBan,FaCocktail,FaPaw,FaCar,FaConciergeBell,FaDumbbell,FaSpa,FaTv} from 'react-icons/fa';
 
 function AddProduct() {
 
@@ -139,12 +139,42 @@ function AddProduct() {
     const cityList = cities.map(e => {
         return(<option key={e.id} value={e.id}>{e.name}</option>)})
     const detailsList = details.map(e => {
-        return(<span class="details-box"><input type="checkbox" class="checkboxDetails" id={e.id} name={e.id} value={e.id} onChange={(e)=>detailHandler(e)}/>
+        return(<span class="details-box"><input type="checkbox" class="checkboxDetails" id={e.id} name={e.id} value={e.id} onChange={(e)=>detailHandler(e)}/>{parseIcons(e.name)}
             <label for={e.id}> {e.name}</label></span>)})
     const imageList = images.map((el,index) => {
         return(<div><span>Imagen {index+1}</span>
                 <button class="button-delete" key={el.id} id={el.id} type="button" onClick={(e) => deleteImageAxios(e)}>Eliminar</button></div>)})
-
+    function parseIcons(icon) {
+        switch (icon) {
+            case 'wi-fi':
+                return <FaWifi className="service-icon" />
+            case 'Pileta':
+                return <FaSwimmer className="service-icon swimmer-icon" />
+            case 'Desayuno':
+                return <FaCoffee className="service-icon" />
+            case 'Cocina':
+                return <FaUtensils className="service-icon" />
+            case 'Aire acondicionado':
+                return <FaSnowflake className="service-icon" />
+            case 'Prohibido fumar':
+                return <FaSmokingBan className="service-icon" />
+            case 'Bar':
+                return <FaCocktail className="service-icon" />
+            case 'Apto mascotas':
+                return <FaPaw className="service-icon" />
+            case 'Estacionamiento gratuito':
+                return <FaCar className="service-icon" />
+            case 'Servicio a cuarto':
+                return <FaConciergeBell className="service-icon" />
+            case 'Gimnacio':
+                return <FaDumbbell className="service-icon" />
+            case 'Spa':
+                return <FaSpa className="service-icon" />
+            case 'Televisor':
+                return <FaTv className="service-icon" />
+            default:
+                return
+        }}
     return (
             <div className="frame-add-product">
                 <hr />

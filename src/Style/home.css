@@ -277,9 +277,9 @@ div.container {
   }
 
   .image-carusel{
-    width:100%;
-    height:100%;
-    object-fit: contain;
+    max-width:100%;
+    
+    object-fit:contain;
   }
   
   div .carousel.carousel-slider .control-arrow {
