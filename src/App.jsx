@@ -20,6 +20,7 @@ import ProductSuccess from './Page/ProductSuccess/ProductSuccess';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import SingleProductReserva from "./Page/SingleProductReserva/SingleProductReserva";
 import SingleCategory from "./Page/Categories/SingleCategory";
+import SearchCityDate from "./Page/SearchCityDate/SearchCityDate";
 
 function App() {
 
@@ -115,8 +116,9 @@ const registrationCheck = registrationInfo => {
         <Route path="/register" element={<RegisterPage registrationCheck={registrationCheck}
       errorRegister={errorRegister} logged = {logged} />} />
         <Route path="/product/:id" element={<SingleProduct />} />
-        <Route path="/reservas/:id" element={<SingleProductReserva />} />
+        <Route path="/reservas/:id" element={<SingleProductReserva />}/>
         <Route path="/categoria/:id" element={<SingleCategory />} />
+        <Route path="/search/:city/:date" element={<SearchCityDate />} />
         <Route path="/ReservaSuccess" element={<ReservaSuccess />} />
         <Route path="/MisReservas" element={<MisReservas />} />
         <Route path="/AddProduct" element={<AddProduct />} />
