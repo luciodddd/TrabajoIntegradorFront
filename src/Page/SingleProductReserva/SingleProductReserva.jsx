@@ -59,9 +59,12 @@ function SingleProduct() {
     
     return (
             <div className="single-product-main-reserva">
+                <div className='header-reservas'>
                     <div className='category-single-product'>
-                    {(singleProduct!=null)?(<h6>{singleProduct.category.title}</h6>):""}
-                    {(singleProduct!=null)?(<h3>{singleProduct.name}</h3>):""}
+                        {(singleProduct!=null)?(<h6>{singleProduct.category.title}</h6>):""}
+                        {(singleProduct!=null)?(<h3>{singleProduct.name}</h3>):""}
+                    </div>
+                    <button href="/MisReservas" type="submit" className="button-mis-reservas">Mis Reservas</button>
                 </div>
                 <form>
                     <div className='form-cointainer'>
