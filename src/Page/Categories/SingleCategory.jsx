@@ -12,72 +12,60 @@ import axios from 'axios';
 import Searcher from "../../Components/Header/Searcher"
 import Categories from '../../Components/Content/Categories';
 import MiniatureProduct from "../../Components/Content/MiniatureProduct"
-import { ALL_CATEGORIES, ALL_PRODUCTS, ALL_CITIES } from "../../JSON/apiManagement.js";
+import { ALL_CATEGORIES, ALL_CITIES,PRODUCT_BY_CATEGORY } from "../../JSON/apiManagement.js";
 
 
 
 function Home() {
     // Logica js
-    const categoriesId = useParams().id
-    
-    // Filtro categorías
-
-    const [categoryFilter,setCategoryFilter] = useState("")
-
-    function activeCategoryFilter(title){
-        setCategoryFilter(title)
-    }
-
-    // Conexión Categorias
+    const [categoriesId, setCategoriesId] = useState(parseInt(useParams().id));
     const [categories, setCategories] = useState([]);
     const [cities, setCities] = useState([]);
     const getCategoriesAxios = async () => {
         try {
             const resGet = await axios.get(ALL_CATEGORIES)
             setCategories(resGet.data)
-            
-            
+            const resGetCity = await axios.get(ALL_CITIES)
+            setCities(resGetCity)  
         } catch (error) {
             console.log(error);
         }
     }
-    useEffect(() => {
-        getCategoriesAxios()
-    }, []);
 
     // Conexión productos:
     const [allProducts, setAllProducts] = useState([]);
     
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get(ALL_PRODUCTS,null,{params: {categoriesId}})
-            const resGetCity = await axios.get(ALL_CITIES)
+            const resGet = await axios.get(`${PRODUCT_BY_CATEGORY}?categoryId=${categoriesId}`)
             setAllProducts(resGet.data)
-            setCities(resGetCity)
             console.log(resGet.data)
         } catch (error) {
             console.log(error);
         }
     }
 
+    const changeCategoryHandler = (id) => {
+        setCategoriesId(parseInt(id))
+        
+        console.log(id)
+    }
     useEffect(() => {
+        getCategoriesAxios()
         getProductsAxios()
-    }, []);
-
+    },[categoriesId]);
     useEffect(() => {
-        console.log("re-render")
+        getCategoriesAxios()
+        getProductsAxios()
+    },[]);
 
-        console.log(categoryFilter)
-    }, [categoryFilter]);
-
-    const categorySection = categories.map(e => {
-        return(<Categories filter={activeCategoryFilter} category={e} key={e.id} active={categoryFilter}/>)
+    let categorySection = categories.map(category => {
+        return(<Categories handler={changeCategoryHandler} category={category} key={category.id} active={categoriesId===category.id}/>)
     })
 
-    const displayItems = allProducts.map(e => {
-        return(<MiniatureProduct product={e} key={e.id}/>)})
+    const displayItems = ((allProducts[0]!=null)?allProducts.map(e => {
+        return(<MiniatureProduct product={e} key={e.id}/>)}):"")
 
-    // Conexión de ciudades
 
 
 

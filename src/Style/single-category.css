@@ -5,10 +5,14 @@
     grid-template-columns: 20% 20% 20% 20%;
     gap: 5%;
 }
-.item {
-    
 
-}
 .thumb .image-carusel{
     max-width: 100%;
+    
+}
+#image-carrusel{
+    max-height: 200px;
+}
+.thumb {
+    height: 200px ;
 }

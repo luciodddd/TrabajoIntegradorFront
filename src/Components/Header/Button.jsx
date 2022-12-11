@@ -1,8 +1,13 @@
 import React from 'react'
+import {Link} from "react-router-dom";
+
 
 const Button = (props) => {
+  
   return (
-    <a className={props.className} href={props.link}>{props.text}</a>
+    <Link className={props.className} to={{ pathname: `/${props.link}`}}>
+    <span href="">{props.text}</span>
+    </Link>
   )
 }
 

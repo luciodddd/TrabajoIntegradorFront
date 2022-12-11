@@ -32,9 +32,11 @@ function Home() {
     useEffect(() => {
         getCategoriesAxios()
     }, []);
+    const categoryHandler = () => {
 
+    }
     const categorySection = categories.map(e => {
-        return(<Categories category={e} key={e.id}/>)
+        return(<Categories handler={categoryHandler} category={e} key={e.id}/>)
     })
 
     // Conexión productos:

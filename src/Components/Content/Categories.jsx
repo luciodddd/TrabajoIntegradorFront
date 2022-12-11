@@ -2,20 +2,19 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { ALL_CATEGORIES, ALL_CITIES, ALL_PRODUCTS } from "../../JSON/apiManagement.js";
+import { ALL_CATEGORIES,PRODUCT_BY_CATEGORY } from "../../JSON/apiManagement.js";
 
 const Categories = (props) => {
-    const activeCategory = props.category.id
-    const [isActive, setIsActive] = useState(props.active);
-    
+
     const categoryId = props.category.id
     const [allProducts, setAllProducts] = useState([]);
     
+    const handler = props.handler
+
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get(ALL_PRODUCTS,{params: {categoryId}})            
+            const resGet = await axios.get(`${PRODUCT_BY_CATEGORY}?categoryId=${categoryId}`)           
             setAllProducts(resGet.data)
-            console.log(resGet.data)
         } catch (error) {
             console.log(error);
         }}
@@ -25,20 +24,15 @@ const Categories = (props) => {
   }, []);
 
     return (
-    
-    <div className='individual-category'
-    style={{
-      backgroundColor: (isActive===props.category.title) ? 'black' : '',
-      color: (isActive===props.category.title) ? 'white' : '',
-    }}
-    >
+    <div className='individual-category' onClick={() => handler(props.category.id)}
+    style={{backgroundColor: (props.active===true) ? '#1dbeb4' : '',
+      color: (props.active===true) ? 'white' : ''}}>
       <Link to={{ pathname: `/categoria/${props.category.id}`}}>
-        <img src = {props.category.image.url}></img>
+        <img src = {props.category.image.url} alt={props.category.image.title}></img>
         <h2>{props.category.title}</h2>
         <span>{allProducts.length} hoteles</span>
-        </Link>
+      </Link>
     </div>
-    
   )
 }
 

@@ -4,6 +4,7 @@ let ip = '192.168.100.34'
 export const ALL_PRODUCTS = `http://${ip}:8080/products`
 //export const PRODUCTS_BY_CITY = `http://${ip}:8080/products/city/`
 export const PRODUCT_BY_ID = `http://${ip}:8080/products/`
+export const PRODUCT_BY_CATEGORY = `http://${ip}:8080/products/categories`
 //export const PRODUCT_DATES_BY_ID = `http://${ip}:8080/products/availability/`
 //export const PRODUCTS_BY_DATES_OR_CITY = `http://${ip}:8080/products/available?`
 export const CREATE_PRODUCT = `http://${ip}:8080/products`
