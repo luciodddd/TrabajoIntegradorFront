@@ -42,13 +42,16 @@ const Searcher = () => {
 
   // Estilos y datos del Select
 
-
-
   const Ciudades = [
     { label: 'Cordoba', value: '1' },
     { label: 'Buenos Aires', value: '2' },
     { label: 'Rosario', value: '3' },
     { label: 'Mendonza', value: '4' },
+    { label: 'Barcelona', value: '5' },
+    { label: 'Quebec', value: '6' },
+    { label: 'Roma', value: '7' },
+    { label: 'Sao Pablo', value: '8' },
+    { label: 'Playa del carmen', value: '9' },
   ];
 
   const filterCiudades = (inputValue: string) => {
@@ -77,7 +80,7 @@ const Searcher = () => {
         <AsyncSelect 
             className="select-custom-class"
             showArrow={false}
-            placeholder="Elija un destino"
+            placeholder="Dónde vamos?"
             cacheOptions loadOptions={loadOptions} defaultOptions
             theme={(theme) => ({
               ...theme,
