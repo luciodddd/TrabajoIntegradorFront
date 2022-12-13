@@ -4,7 +4,6 @@ import { FaRegStar , FaSuitcaseRolling} from 'react-icons/fa';
 import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const MiniatureProduct = (props) => {
-    console.log(props.product)
     return (
     <div class="item">
         <div class="thumb">

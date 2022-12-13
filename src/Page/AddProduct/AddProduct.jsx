@@ -2,10 +2,12 @@ import "../../Style/add-product.css"
 import "../../Style/bootstrap.min.css"
 
 import React, {useState, useEffect} from 'react'
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
 import axios from 'axios';
 import { ALL_CATEGORIES, ALL_CITIES, ALL_CHARACTERISTICS,CREATE_PRODUCT,IMAGES,ALL_POLOCIES} from "../../JSON/apiManagement.js";
 import { FaWifi , FaSwimmer,FaCoffee,FaUtensils,FaSnowflake,FaSmokingBan,FaCocktail,FaPaw,FaCar,FaConciergeBell,FaDumbbell,FaSpa,FaTv} from 'react-icons/fa';
+import swal from "sweetalert"
+
 
 function AddProduct() {
 
@@ -16,7 +18,7 @@ function AddProduct() {
     const [detailsSelected, setDetailsSelected] = useState([]);
     const [images, setImages] = useState([]);
     const [policies,setPolicies] = useState([])
-    //const [detailsExtra, setDetailsExtra] = useState([]);
+    const navigate = useNavigate()
 
     // Conexión
     const getCategoriesAxios = async () => {
@@ -26,7 +28,7 @@ function AddProduct() {
             const resDetails = await axios.get(ALL_CHARACTERISTICS)
             setCategories(resCategories.data)
             setCities(resCities.data)
-            setDetails(resDetails.data)
+            setDetails(resDetails.data) 
         } catch (error) {
             console.log(error);
         }
@@ -55,18 +57,34 @@ function AddProduct() {
         
     const deleteImageAxios = async (e) => {
         const imageId = e.target.id
-        console.log(imageId)
         try {
             const resImage = await axios.delete(IMAGES+`/${imageId}`)
-            console.log(resImage)
-            setImages(images.filter(img => img.id !== imageId))
+            setImages(images.filter(img => img.id !== parseInt(imageId)))
         } catch (error) {console.log(error)}}
 
     const postProductAxios = async () => {
         try {
-            const resCategories = await axios.post(CREATE_PRODUCT,bodyContructor)
-            console.log(resCategories)
+            const resProduct = await axios.post(CREATE_PRODUCT,bodyContructor())
+            const forms = document.getElementById('post-product-form')
+            if(resProduct.status===200){
+                forms.reset()
+                window.scroll({
+                    top: 0,
+                    left: 0,});
+                swal({
+                    title: "Producto creado con Éxito!",
+                    icon: "success",
+                    button: "Cerrar"
+                })
+            }
+            setImages([])
         } catch (error) {
+            swal({
+                title: "Algo anda mal!",
+                text: "Revise sus datos y vuelva a intentarlo",
+                icon: "error",
+                button: "Cerrar"
+            })
             console.log(error);
         }}
 
@@ -81,57 +99,58 @@ function AddProduct() {
 
     const detailHandler = (e) => {
         if (e.target.checked === true) {
-            let newIdDetail = e.target.value
+            let newIdDetail = parseInt(e.target.value)
             setDetailsSelected([...detailsSelected, newIdDetail])
         }
         else {
             setDetailsSelected(detailsSelected.filter(det => det !== e.target.value))
         }
-        console.log(detailsSelected)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        postPolicies()
         bodyContructor()
-        //postProductAxios()
-
+        postProductAxios()
     }
 
     const postPolicies = () => {
-        const policyList = document.querySelectorAll('#policy')
+        const policyList = document.querySelectorAll('.policy-input')
         const policyArray = Array.prototype.slice.call(policyList);
-        policyArray.map(pol => {
-            postPoliciesAxios(pol)})
-        console.log(policies)
+        const policiesPost = policyArray.map(policy => {
+            const temp = {"title": policy.title,
+            "description": policy.value}
+            return (temp)
+            })
+        /*policyArray.map(pol => {
+            postPoliciesAxios(pol)})*/
+        return policiesPost.filter(function(x){
+            return x.description!==""
+        })
     }
 
     const bodyContructor = () => {
         const name = document.getElementById('name').value
         const description = document.getElementById('description').value
-        const categoryID = document.getElementById('category').value
-        const cityID = document.getElementById('city').value
+        const categoryID = parseInt(document.getElementById('category').value)
+        const cityID = parseInt(document.getElementById('city').value)
         const detailID = detailsSelected
-        const policyID = policies
+        const policyID = postPolicies()
         const imageID = images.map(el => {return(el.id)})
-        console.log(imageID)
+        const address = document.getElementById('address').value
         const body = {
-            'cityID': cityID,
-            'categoryID': categoryID,
+            'cityId': cityID,
+            'address': address,
+            'categoryId': categoryID,
             'imageIds': imageID,
             'detailIds': detailID,
-            'policyIds': policyID,
+            'policies': policyID,
             'name': name,
             'description': description
         }
-        console.log(body)
         return body
     }
 
-
-
-    const addCategory = () => {
-    }
     
+
     // AGREGAR ELEMENTOS DINÁMICAMENTE:
 
     const categoryList = categories.map(e => {
@@ -175,6 +194,13 @@ function AddProduct() {
             default:
                 return
         }}
+    const citiesList = cities.map(city => {
+        const dict = {
+            'label': city.name,
+            'value': city.id
+        }
+        return(dict)})
+        
     return (
             <div className="frame-add-product">
                 <hr />
@@ -183,7 +209,7 @@ function AddProduct() {
                     <hr />
                     <h1>Administracion</h1>
                 </div>
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={(e) => handleSubmit(e)} id="post-product-form">
                     <h6>Crear Propiedad</h6>
                     <div className='form-cointainer'>
                         <div className="info-container">
@@ -200,10 +226,11 @@ function AddProduct() {
                                     </div>
                                     <div className="input-container">
                                         <label for="adrress">Direccion</label>
-                                        <input type="text" placeholder="Dirección" required name="adress" id="adress"/>
+                                        <input type="text" placeholder="Dirección" required name="address" id="address"/>
                                     </div>
                                     <div className="input-container">
                                         <label for="city">Ciudad</label>
+                                        {/*<ScrollDown cities={citiesList}></ScrollDown>*/}
                                         <select type="select" required name="city" id="city">
                                         {cityList}</select>
                                     </div>
@@ -237,25 +264,25 @@ function AddProduct() {
                                 <div className="poli-product-info">
                                     <h3>Normas de la casa</h3>
                                     <label for="normas">Descripcion</label>
-                                    <input type="normas" placeholder="Escribir aqui" required name="normas" id="normas"/>
+                                    <input type="normas" placeholder="Escribir aqui" name="normas" id="normas" className="policy-input" title="Normas"/>
                                 </div>
                                 <div className="poli-product-info">
                                     <h3>Salud y Seguridad</h3>
                                     <label for="descripcion">Descripcion</label>
-                                    <input type="descripcion" placeholder="Escribir aqui" required name="saludSeguridad" id="saludSeguridad"/>
+                                    <input type="descripcion" placeholder="Escribir aqui" name="saludSeguridad" id="saludSeguridad" className="policy-input" title="Política de Salud y Seguridad"/>
                                 </div>
                                 <div className="poli-product-info">
                                     <h3>Politica de Cancelacion</h3>
                                     <label for="Cancelacion">Descripcion</label>
-                                    <input type="Cancelacion" placeholder="Escribir aqui" required name="Cancelacion" id="Cancelacion"/>
+                                    <input type="Cancelacion" placeholder="Escribir aqui" name="Cancelacion" id="Cancelacion" className="policy-input" title="Política de cancelación"/>
                                 </div>
                             </div>
                             <h6>Cargar Imagenes</h6>
                             {imageList}
-                            {(images.length<5)?(<div className="Add-imagenes">
-                                <input type="url" placeholder="https://" required name="url" id="url"/>
-                                <button class="button" type="button" onClick={(e) => uploadImage(e)}>+</button>
-                            </div>):<span>Solamente se pueden cargar 5 imágenes por producto</span>}
+                            <div className="Add-imagenes">
+                            <input type="url" placeholder="https://" name="url" id="url"/>
+                            <button class="button" type="button" onClick={(e) => uploadImage(e)}>+</button>
+                            </div>
                         </div>
                     </div>
                         <input type="submit" value="Crear"/>

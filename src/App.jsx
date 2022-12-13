@@ -2,7 +2,7 @@
 import "./Style/styles.css"
 import "./Style/index.css"
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Style/App.css';
 import Header from './Page/Header/Header';
 import Home from './Page/Home/Home';
@@ -102,6 +102,9 @@ const registrationCheck = registrationInfo => {
   setError("")
 }
 
+/*useEffect(console.log("Logged")
+,[logged])*/
+
   return (
     <div classname="App">
       <BrowserRouter>
@@ -118,7 +121,7 @@ const registrationCheck = registrationInfo => {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/reservas/:id" element={<SingleProductReserva />}/>
         <Route path="/categoria/:id" element={<SingleCategory />} />
-        <Route path="/search/:city/:date" element={<SearchCityDate />} />
+        <Route path="/search/:city/:initialDate/:endDate" element={<SearchCityDate />} />
         <Route path="/ReservaSuccess" element={<ReservaSuccess />} />
         <Route path="/MisReservas" element={<MisReservas />} />
         <Route path="/AddProduct" element={<AddProduct />} />

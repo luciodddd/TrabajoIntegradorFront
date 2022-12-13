@@ -1,4 +1,14 @@
 
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import format from 'date-fns/format'
+import { addDays, subDays } from 'date-fns'
+import { DateRange} from 'react-date-range';
+import DatePicker from 'react-multiple-datepicker'
+
+
+
 import "../../Style/single-product.css"
 import "../../Style/bootstrap.min.css"
 
@@ -14,6 +24,7 @@ import Detail from '../../Components/Header/Detail'
 
 function SingleProduct() {
     const productId = useParams().id
+    const [availability,setAvailability] = useState()
     const [singleProduct, setSingleProduct] = useState({
         "id": "",
         "name": "",
@@ -51,7 +62,7 @@ function SingleProduct() {
         try {
             const resGet = await axios.get(`${PRODUCT_BY_ID}${productId}`)
             setSingleProduct(resGet.data)
-            console.log(resGet.data)
+            setAvailability(resGet.date.availabilities)
         } catch (error) {
             console.log(error);
         }

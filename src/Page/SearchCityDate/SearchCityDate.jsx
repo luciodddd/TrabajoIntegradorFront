@@ -12,32 +12,32 @@ import axios from 'axios';
 import Searcher from "../../Components/Header/Searcher"
 import Categories from '../../Components/Content/Categories';
 import MiniatureProduct from "../../Components/Content/MiniatureProduct"
-import { ALL_CATEGORIES, ALL_CITIES,PRODUCT_BY_CATEGORY } from "../../JSON/apiManagement.js";
+import { ALL_CATEGORIES, ALL_CITIES,PRODUCTS_BY_DATES_OR_CITY } from "../../JSON/apiManagement.js";
 
 
 
-function Home() {
+function SearchCityDate() {
     // Logica js
-    const [categoriesId, setCategoriesId] = useState(parseInt(useParams().id));
+    const [dates, setDates] = useState(useParams().date)
+    const [cityId, setCityId] = useState(parseInt(useParams().city));
     const [categories, setCategories] = useState([]);
     const [cities, setCities] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
+
+
+    // Conexión API
     const getCategoriesAxios = async () => {
         try {
             const resGet = await axios.get(ALL_CATEGORIES)
-            setCategories(resGet.data)
-            const resGetCity = await axios.get(ALL_CITIES)
-            setCities(resGetCity)  
+            setCategories(resGet.data) 
         } catch (error) {
             console.log(error);
         }
     }
-
-    // Conexión productos:
-    const [allProducts, setAllProducts] = useState([]);
     
     const getProductsAxios = async () => {
         try {
-            const resGet = await axios.get(`${PRODUCT_BY_CATEGORY}?categoryId=${categoriesId}`)
+            const resGet = await axios.get(`${PRODUCTS_BY_DATES_OR_CITY}?cityId=${cityId}?dates=${dates}`)
             setAllProducts(resGet.data)
             console.log(resGet.data)
         } catch (error) {
@@ -45,29 +45,18 @@ function Home() {
         }
     }
 
-    const changeCategoryHandler = (id) => {
-        setCategoriesId(parseInt(id))
-        
-        console.log(id)
-    }
     useEffect(() => {
         getCategoriesAxios()
         getProductsAxios()
-    },[categoriesId]);
-    useEffect(() => {
-        getCategoriesAxios()
-        getProductsAxios()
-    },[]);
+    }, []);
 
-    let categorySection = categories.map(category => {
-        return(<Categories handler={changeCategoryHandler} category={category} key={category.id} active={categoriesId===category.id}/>)
-    })
-
+    // Elements 
     const displayItems = ((allProducts[0]!=null)?allProducts.map(e => {
         return(<MiniatureProduct product={e} key={e.id}/>)}):"")
-
-
-
+    const categoryHandler = () => {}
+    const categorySection = categories.map(e => {
+        return(<Categories handler={categoryHandler} category={e} key={e.id}/>)
+    })
 
     return (
     <div className="home-main">
@@ -108,4 +97,4 @@ function Home() {
 
 
 
-export default Home;
+export default SearchCityDate;

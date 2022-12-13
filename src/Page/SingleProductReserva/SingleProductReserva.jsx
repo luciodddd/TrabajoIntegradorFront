@@ -6,57 +6,54 @@ import React, {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom"
 import axios from 'axios';
 import ProductCalendar from '../../Components/Header/ProductCalendar';
-import {PRODUCT_BY_ID} from "../../JSON/apiManagement.js";
+import {PRODUCT_BY_ID,BOOKING} from "../../JSON/apiManagement.js";
 import Policy from "../../Components/Content/Policy";
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import format from 'date-fns/format'
+import { addDays, subDays } from 'date-fns'
+import { DateRange} from 'react-date-range';
 
 function SingleProduct() {
-    const productId = useParams().id
-    const [singleProduct, setSingleProduct] = useState(/*{
-        "id": "",
-        "name": "",
-        "description": "",
-        "images": [{
-        "id": "",
-        "title": "",
-        "url": ""
-        }],
-        "category": {
-        "id": "",
-        "title": "",
-        "description": "",
-        "image": {
-            "id": "",
-            "title": "",
-            "url": ""
+    const [range, setRange] = useState([
+        {
+        startDate: new Date(),
+        endDate: addDays(new Date(),7),
+        key: 'selection'
         }
-        },
-        "city": {
-        "id": "",
-        "name": "",
-        "shortName": ""
-        },
-        "policies":[{
-            "id": "",
-            "title":"",
-            "description":""
-        }],
-        "details":[{
-            "id":"",
-            "name":""
-        }]}*/)
+    ])
+    const productId = useParams().id
+    const [singleProduct, setSingleProduct] = useState()
     const getProductsAxios = async () => {
         try {
             const resGet = await axios.get(PRODUCT_BY_ID+productId)
             setSingleProduct(resGet.data)
         } catch (error) {
             console.log(error);
-        }
-    }
+        }}
+        useEffect(() => {getProductsAxios()}, []);
+
+    const postBooking = async (booking) => {
+        try {
+            console.log(booking)
+            const resImage = await axios.post(BOOKING,booking)
+        } catch (error) {console.log(error)}}
+
     const policies = (singleProduct!=null)?(singleProduct.policies.map(pol => {return(
         <Policy pol={pol}></Policy>
     )})):""
-    useEffect(() => {getProductsAxios()}, []);
     
+    // Submit del form:
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const bookingBody = {
+            from: format(range[0].startDate, "yyyy-MM-dd").toString(),
+            to: format(range[0].endDate, "yyyy-MM-dd").toString(),
+            productId: parseInt(productId)}
+        console.log(bookingBody)
+        postBooking(bookingBody)}
+
     return (
             <div className="single-product-main-reserva">
                 <div className='header-reservas'>
@@ -66,7 +63,7 @@ function SingleProduct() {
                     </div>
                     <button href="/MisReservas" type="submit" className="button-mis-reservas">Mis Reservas</button>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className='form-cointainer'>
                         <div className="info-container">
                             <div className="user-data">
@@ -74,26 +71,36 @@ function SingleProduct() {
                                 <div className="user-data-form">
                                     <div className="input-container">
                                         <label for="name">Nombre</label>
-                                        <input type="text" defaultValue="Lucio" required name="name" id="name"/>
+                                        <input type="text" placeholder="Name" required name="name" id="name"/>
                                     </div>
                                     <div className="input-container">
                                         <label for="lastName">Apellido</label>
-                                        <input type="text" defaultValue="Dipre" required name="lastName" id="lastName"/>
+                                        <input type="text" placeholder="Apellido" required name="lastName" id="lastName"/>
                                     </div>
                                     <div className="input-container">
                                         <label for="email">Correo Electrónico</label>
-                                        <input type="text" defaultValue="luciodipre@gmail.com" required name="email" id="email"/>
+                                        <input type="text" placeholder="email" required name="email" id="email"/>
                                     </div>
                                     <div className="input-container">
                                         <label for="city">Ciudad</label>
-                                        <input type="text" defaultValue="Córdoba" required name="city" id="city"/>
+                                        <input type="text" placeholder="Ciudad" required name="city" id="city"/>
                                     </div>
                                 </div>
                             </div>
                             
                             <div className="reservation-calendar">
                                 <h6>Seleccioná tu fecha de reserva</h6>    
-                                <ProductCalendar></ProductCalendar>
+                                <DateRange
+                                date={ new Date()}
+                                //onChange={handleDateSelect}
+                                onChange = {item => {setRange([item.selection])}}
+                                editableDateInputs={true}
+                                moveRangeOnFirstSelection={false}
+                                ranges={range}
+                                months={2}
+                                direction='horizontal'
+                                className='calendarElement'
+                            />
                             </div>
                             <div className="horario">
                                 <h6>Tu horario de llegada</h6>
@@ -124,17 +131,15 @@ function SingleProduct() {
                                 <hr />
                                 <div className="check-in">
                                     <p>Check in</p>
-                                    <span>23/11/2022</span>
+                                    <span>{format(range[0].startDate, "yyyy-MM-dd")}</span>
                                 </div>
                                 <hr />
                                 <div className="check-out">
                                     <p>Check out</p>
-                                    <span>29/11/2022</span>
+                                    <span>{format(range[0].endDate, "yyyy-MM-dd")}</span>
                                 </div>
                                 <hr />
-                                <Link class="home" to={{ pathname: "/ReservaSuccess"}}>
                                     <button type="submit">Confirmar reserva</button>
-                                </Link>
                             </div>
                         </div>
                     </div>

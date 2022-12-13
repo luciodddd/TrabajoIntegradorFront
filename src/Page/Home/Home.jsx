@@ -8,7 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../JSON/apiManagement.js"
 import React, {useState,useEffect} from 'react'
 import CarruselProducts from '../../Components/Content/CarruselProducts';
-import Searcher2 from '../../Components/Header/Searcher2';
+import Searcher from '../../Components/Header/Searcher';
 import axios from 'axios';
 import Categories from '../../Components/Content/Categories';
 import { ALL_CATEGORIES, ALL_CITIES, ALL_PRODUCTS } from "../../JSON/apiManagement.js";
@@ -32,9 +32,7 @@ function Home() {
     useEffect(() => {
         getCategoriesAxios()
     }, []);
-    const categoryHandler = () => {
-
-    }
+    const categoryHandler = () => {}
     const categorySection = categories.map(e => {
         return(<Categories handler={categoryHandler} category={e} key={e.id}/>)
     })
@@ -60,10 +58,6 @@ function Home() {
         getProductsAxios()
     }, []);
 
-    // Conexión de ciudades
-
-
-
     return (
     <div className="home-main">
         <section class="section search-categoria">
@@ -71,7 +65,7 @@ function Home() {
                 <h1 className='search-title'>Busca ofertas en hoteles, casas y mucho más</h1>
             </div>
             <div class="container-searcher">
-                <Searcher2 cities={cities}></Searcher2>
+                <Searcher cities={cities}></Searcher>
             </div>
         </section>
         <section class="section">
