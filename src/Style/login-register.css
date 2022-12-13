@@ -49,3 +49,12 @@ div.login-page #submit-login{
     width: 150px;
     background-color: var(--aquamarine);
 }
+
+@media (max-width:600px){
+    :root{
+        --form-width: 400px
+    }
+    .dropdown-log{
+        margin: auto;
+    }
+}

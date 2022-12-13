@@ -61,7 +61,9 @@ function SingleProduct() {
                         {(singleProduct!=null)?(<h6>{singleProduct.category.title}</h6>):""}
                         {(singleProduct!=null)?(<h3>{singleProduct.name}</h3>):""}
                     </div>
-                    <button href="/MisReservas" type="submit" className="button-mis-reservas">Mis Reservas</button>
+                    <div className="div-button-mis-reservas">
+                        <button href="/MisReservas" type="submit" className="button-mis-reservas">Mis Reservas</button>
+                    </div>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='form-cointainer'>

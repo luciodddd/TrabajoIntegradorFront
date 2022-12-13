@@ -166,31 +166,31 @@ function AddProduct() {
     function parseIcons(icon) {
         switch (icon) {
             case 'wi-fi':
-                return <FaWifi className="service-icon" />
+                return <FaWifi className="service-icon" size={18} color='#545776' />
             case 'Pileta':
-                return <FaSwimmer className="service-icon swimmer-icon" />
+                return <FaSwimmer className="service-icon swimmer-icon" size={18} color='#545776' />
             case 'Desayuno':
-                return <FaCoffee className="service-icon" />
+                return <FaCoffee className="service-icon" size={18} color='#545776'/>
             case 'Cocina':
-                return <FaUtensils className="service-icon" />
+                return <FaUtensils className="service-icon" size={18} color='#545776'/>
             case 'Aire acondicionado':
-                return <FaSnowflake className="service-icon" />
+                return <FaSnowflake className="service-icon" size={18} color='#545776'/>
             case 'Prohibido fumar':
-                return <FaSmokingBan className="service-icon" />
+                return <FaSmokingBan className="service-icon" size={18} color='#545776'/>
             case 'Bar':
-                return <FaCocktail className="service-icon" />
+                return <FaCocktail className="service-icon" size={18} color='#545776'/>
             case 'Apto mascotas':
-                return <FaPaw className="service-icon" />
+                return <FaPaw className="service-icon" size={18} color='#545776'/>
             case 'Estacionamiento gratuito':
-                return <FaCar className="service-icon" />
+                return <FaCar className="service-icon" size={18} color='#545776'/>
             case 'Servicio a cuarto':
-                return <FaConciergeBell className="service-icon" />
+                return <FaConciergeBell className="service-icon" size={18} color='#545776' />
             case 'Gimnacio':
-                return <FaDumbbell className="service-icon" />
+                return <FaDumbbell className="service-icon" size={18} color='#545776'/>
             case 'Spa':
-                return <FaSpa className="service-icon" />
+                return <FaSpa className="service-icon" size={18} color='#545776'/>
             case 'Televisor':
-                return <FaTv className="service-icon" />
+                return <FaTv className="service-icon" size={18} color='#545776'/>
             default:
                 return
         }}
@@ -210,11 +210,11 @@ function AddProduct() {
                     <h1>Administracion</h1>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)} id="post-product-form">
-                    <h6>Crear Propiedad</h6>
-                    <div className='form-cointainer'>
-                        <div className="info-container">
-                            <div className="user-data">
-                                <div className="user-data-form">
+                    <div className='form-cointainer1'>
+                        <div className="info-cointainer1">
+                            <h6>Crear Propiedad</h6>
+                            <div className="users-data">
+                                <div className="users-data-form">
                                     <div className="input-container">
                                         <label for="name">Nombre de la propiedad</label>
                                         <input type="text" placeholder="Nombre de la propiedad" required name="name" id="name"/>
@@ -241,12 +241,9 @@ function AddProduct() {
                                 </div>
                             </div>                           
                             <div className="add-atributes">
-                                <h6>Agregar Atributos</h6>    
-                                <div className="add-atributes-icon">
-                                    <div className="input-container">
-                                    {detailsList}
+                                <div><h6>Agregar Atributos</h6></div>
+                                <div className="add-atributes-icon"><div className="atributes-icon">{detailsList}</div></div>
                                     {/*detailsExtra*/}
-                                    </div>
                                     {/*<div className="input-container">
                                         <label for="icono">Agregar Característica</label>
                                         <input type="text" placeholder="Característica" name="addDetail" id="addDetail"/>
@@ -257,7 +254,6 @@ function AddProduct() {
                                             <button type="submit" onSubmit={handleSubmit}>+</button>
                                         </Link>
                                     </div>*/}
-                                </div>
                             </div>
                             <h6>Politicas del Producto</h6>
                             <div className="poli-product">
@@ -278,14 +274,16 @@ function AddProduct() {
                                 </div>
                             </div>
                             <h6>Cargar Imagenes</h6>
-                            {imageList}
                             <div className="Add-imagenes">
+                            {imageList}
                             <input type="url" placeholder="https://" name="url" id="url"/>
                             <button class="button" type="button" onClick={(e) => uploadImage(e)}>+</button>
                             </div>
                         </div>
+                        <div className="Button-crear">
+                            <input clasName='create button' type="submit" value="Crear"/>
+                        </div>
                     </div>
-                        <input type="submit" value="Crear"/>
                 </form> 
             </div>
     )

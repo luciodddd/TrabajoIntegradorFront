@@ -909,6 +909,68 @@ About Us Page
 }
 
 
+/* 
+---------------------------------------------
+Miniaturas products
+--------------------------------------------- 
+*/
+
+.container-product{
+    background-color: white;
+    width: 100%;
+    height: 90%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 0;
+    padding: 5%;
+    margin: 5%;
+    margin-top:10%;
+}
+
+.img-icons{
+  display: grid;
+  direction: row;
+  gap: 2px;
+}
+
+.img-icons img{
+  size: 90%;
+  border-radius: 8px;
+  border: 0;
+}
+
+.products-icons ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 20px;
+  color: grey;
+}
+
+.descripcion-producto{
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-descripcion-producto{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sub-descripcion-producto h4{
+  color:#545776;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.carrusel-category{
+  color: grey;
+  font-size: medium;
+  font-weight: bold;
+}
+
 
 /* 
 ---------------------------------------------

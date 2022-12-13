@@ -51,3 +51,13 @@ h3{
     height: 50px;
 }
 
+@media (max-width:600px){
+    .Reservas-confirm{
+        display: flex;
+        flex-direction: center;
+        justify-content: center;
+        justify-items: center;
+         width: 100%;
+        padding: 1%;
+}
+}

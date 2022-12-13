@@ -104,9 +104,8 @@ function SingleProduct() {
                     <h6>Fechas Disponibles</h6>
                 <div className="Fecha-disponible">
                     <ProductCalendar></ProductCalendar>
-                    <Button className="login-buttons single-product-button" link={`reservas/${productId}`} text="Reservar"></Button>
-
                 </div>
+                <Button className="login-buttons single-product-button" link={`reservas/${productId}`} text="Reservar"></Button>
             </div>
     )
 }

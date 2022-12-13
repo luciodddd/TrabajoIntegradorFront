@@ -1,4 +1,4 @@
-let ip = '192.168.100.34'
+let ip = 'localhost'
 
 /*------------- Products ----------------*/
 export const ALL_PRODUCTS = `http://${ip}:8080/products`

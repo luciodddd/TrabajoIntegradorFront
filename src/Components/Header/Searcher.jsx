@@ -112,10 +112,10 @@ useEffect(() => {
     <div className='form-container'>
       <form onSubmit={searchCityAndDate}>
         <AsyncSelect 
-            className="select-custom-class"
+            className="select-custom-class2"
             onChange={onChangeSelectedOption}
             showArrow={false}
-            placeholder="Dónde vamos?"
+            placeholder="Dónde vamos?            "
             cacheOptions loadOptions={loadOptions} defaultOptions={cities}
             theme={(theme) => ({
               ...theme,
